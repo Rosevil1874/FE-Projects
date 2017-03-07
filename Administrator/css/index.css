@@ -1,0 +1,370 @@
+/*=====================================================reset==================================================*/
+html, body, div, span, p, img, ul, li,
+form, aside, header, section{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+:focus {
+  outline: 1;
+}
+
+aside,header,section { 
+    display:block;
+}
+
+ul {
+    list-style:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #000;
+    cursor:help;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+/*===========================================custom===========================================*/
+html {
+    height: 92%;
+}
+body {
+    height: 92%;
+    font-size: 16px;
+    font-family: "微软雅黑";
+    background-color: #b2b2b2;
+}
+main {
+    position: relative;
+    width: 88.8%;
+    height: 100%;
+    background-color: #fff;
+    margin: 50px auto;
+    -webkit-box-shadow: 2px 2px 1px gray;
+    box-shadow: 2px 2px 1px gray;
+}
+
+/*aside button*/
+.aside-btn {
+    writing-mode: vertical-lr;
+    text-align: center;
+}
+.aside-btn div{
+    position: absolute;
+    left: -40px;
+    width: 40px;
+    height: 120px;
+    font-size: 1.2rem;
+    line-height: 40px;
+    border-top-left-radius: 7px; 
+    border-bottom-left-radius: 7px; 
+}
+.notice {
+    top: 50px;
+    background-color: #ab4b4b;
+    color: #fff;
+}
+.report {
+    top: 180px;
+    background-color: #eee;
+    color: #939393;
+}
+
+/*aside list*/
+main aside{
+    position: relative;
+    z-index: 10;
+    width: 50%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: 2%;
+    background-color: #e6e6e6;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    -webkit-box-shadow: 1px 2px 1px gray;
+    box-shadow: 1px 2px 1px gray;
+}
+.item-list {
+    width: 95%;
+    height: 95%;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-left: 25px;
+    box-sizing: border-box;
+
+}
+.item-list li{
+    height: 40px;
+    margin: 15px 0;
+    line-height: 40px;
+}
+.item-list img{
+    width: 40px;
+    height: auto;
+    border: 1px solid #bebebe;
+    border-radius: 40px;
+    margin-right: 15px;
+    vertical-align: middle;   //文字图片对齐
+}
+
+/*paging btn on the bottom of list*/
+.paging {
+    margin-top: -40px;
+    text-align: center;
+}
+.paging li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.paging .btn{
+    background: url("../icon/paging.png");
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 40px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 1px 1px 2px gray;
+    box-shadow: 1px 1px 2px gray;
+    cursor: pointer;
+}
+#first-page {
+    background-position:  -3px -3px;
+}
+#prev-page {
+    background-position: -51px -3px;
+}
+#next-page {
+    background-position: -155px -3px;
+}
+#last-page {
+    background-position: -203px -3px;
+}
+#page-num {
+    font-size: 1.3rem;
+    color: #bbb;
+    letter-spacing: 10px;
+    margin-bottom: 25px;
+    vertical-align: middle;
+}
+.on {
+    color: gray;
+    font-weight: bold;
+}
+/*right side*/
+main header {
+    position: absolute;
+    left: 52.1%;
+    top: 50px;
+    width: 45.9%;
+}
+.search-text {
+    z-index: 5;
+    position: relative;
+    float: left;
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    border: 1px solid #bcbcbc;
+    border-radius: 2px;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+.search-btn {
+    position: absolute;
+    left: 0;
+    top: -4px;
+    float: left;
+    width: 60%;
+    height: 50px;
+    color: #939393;
+    background-color: #e6e6e6;
+    text-align: right;
+    font-size: 1.3rem;
+    padding-left: 15px;
+    padding-right: 2%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 1px 1px 1px gray;
+    box-shadow: 1px 1px 1px gray;
+    cursor: pointer;
+}
+.close-btn {
+    z-index: 6;
+    position: absolute;
+    left: 40%;
+    top: 10px;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+#yiban-logo {
+    float: right;
+    margin-right: 7%;
+    margin-top: -10px;
+    width: 26%;
+    height: auto;
+}
+
+/*detail*/
+.detail {
+    position: absolute;
+    top: 120px;
+    left: 52.1%;
+    width: 45%;
+    background-color: #e6e6e6;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 1px 1px 1px gray;
+    box-shadow: 1px 1px 1px gray;
+    font-size: 0.9rem;
+}
+.good {
+    padding: 15px;
+    line-height: 25px;
+    width: 50%;
+    float: left;
+}
+.publish,
+.discribe {
+    color: gray;
+}
+.user {
+    float: left;
+    margin-left: 15%;
+    margin-top: 15px;
+}
+.user img {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 1px solid #e6e6e6;
+}
+#good-title {
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 15px;
+    padding-left: 15px;
+    background-color: #fcfcfc;
+    border: 1px solid #bcbcbc;
+    border-radius: 3px;
+    color: #767c8b;
+}
+
+.good-img {
+    margin-left: 15px;
+}
+.good-img img{
+    margin: 1%;
+    float: left;
+    width: 88px;
+    height: 88px;
+    border: 1px solid #bcbcbc;
+}
+.discribe {
+    float: left;
+    margin-left: 5%;
+    margin-top: 5px;
+    width: 25%;
+}
+.discribe li {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+.price {
+    float: right;
+}
+#price-num {
+    color: #ff5757;
+    font-size: 1.1rem;
+}
+#bargain-able {
+    float: right;
+    margin-right: -30%;
+    margin-top: 5px;
+    height: 20px;
+    width: auto;
+}
+
+textarea {
+    resize: none;
+    color: #767c8b;
+    width: 90%;
+    height: 180px;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    padding-top: 10px;
+    outline: none;
+    border: 1px solid #bcbcbc;
+    border-radius: 7px;
+}
+
+.bottom-btn {
+    position: absolute;
+    bottom: -20px;
+    right: 50px;
+}
+.bottom-btn img {
+    height: 40px;
+    width: auto;
+    cursor: pointer;
+}
+
+/*device width blow 1200px*/
+@media screen and (max-width: 1200px)  {
+    main aside{
+        width: 45%;
+    }
+    main header {
+        left: 47.1%;
+    }
+    .search-btn{
+        padding-right: 1%;
+        font-size: 1.2rem;
+    }
+    .detail {
+        width: 50%;
+        left: 47.1%;
+    }
+    .good-img {
+        margin-left: 10px;
+    }
+    .good-img img{
+        margin: 5px;
+    }
+    .discribe {
+        margin-left: 1%;
+        width: 23%;
+    }
+}
+
