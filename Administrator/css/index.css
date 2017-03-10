@@ -18,7 +18,8 @@ body {
   outline: 1;
 }
 
-aside,header,section { 
+/*IE do not surpport HTML5 tags*/
+main,aside,header,section { 
     display:block;
 }
 
@@ -58,14 +59,16 @@ main {
     position: relative;
     width: 88.8%;
     height: 100%;
-    background-color: #fff;
     margin: 50px auto;
+    padding-top: 1px;
+    background-color: #fff;
     -webkit-box-shadow: 2px 2px 1px gray;
     box-shadow: 2px 2px 1px gray;
 }
 
 /*aside button*/
 .aside-btn {
+    /*-ms-writing-mode: tb-lr;    这里加上的话会把列表挤掉*/
     writing-mode: vertical-lr;
     text-align: center;
 }
@@ -120,6 +123,7 @@ main aside{
     height: 40px;
     margin: 15px 0;
     line-height: 40px;
+    cursor: pointer;
 }
 .item-list img{
     width: 40px;
@@ -140,7 +144,7 @@ main aside{
     margin: 0 5px;
 }
 .paging .btn{
-    background: url("../icon/paging.png");
+    background: url("../images/paging.png");
     width: 40px;
     height: 40px;
     overflow: hidden;
@@ -173,6 +177,7 @@ main aside{
     color: gray;
     font-weight: bold;
 }
+
 /*right side*/
 main header {
     position: absolute;
@@ -216,16 +221,19 @@ main header {
 .close-btn {
     z-index: 6;
     position: absolute;
-    left: 40%;
+    background: url("../images/images.png") -105.4px 0 no-repeat;
+    -webkit-background-size: auto 60px;
+    background-size: auto 60px;
+    left: 43%;
     top: 10px;
     width: 30px;
-    height: auto;
+    height: 30px;
     cursor: pointer;
 }
 #yiban-logo {
     float: right;
     margin-right: 7%;
-    margin-top: -10px;
+    margin-top: -20px;
     width: 26%;
     height: auto;
 }
@@ -277,7 +285,6 @@ main header {
     border-radius: 3px;
     color: #767c8b;
 }
-
 .good-img {
     margin-left: 15px;
 }
@@ -307,17 +314,20 @@ main header {
     font-size: 1.1rem;
 }
 #bargain-able {
+    background: url("../images/images.png") 0px -1px no-repeat;
+    -webkit-background-size: auto 50px;
+    background-size: auto 50px;
+    display: inline-block;
     float: right;
-    margin-right: -30%;
-    margin-top: 5px;
-    height: 20px;
-    width: auto;
+    margin-right: -40px;
+    height: 22px;
+    width: 40px;
 }
 
 textarea {
     resize: none;
     color: #767c8b;
-    width: 90%;
+    width: 93%;
     height: 180px;
     box-sizing: border-box;
     margin-left: 15px;
@@ -326,18 +336,32 @@ textarea {
     padding-top: 10px;
     outline: none;
     border: 1px solid #bcbcbc;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .bottom-btn {
     position: absolute;
     bottom: -20px;
     right: 50px;
-}
-.bottom-btn img {
-    height: 40px;
-    width: auto;
     cursor: pointer;
+    width: 35%;
+    height: 40px;
+}
+.bottom-btn span {
+    display: inline-block;
+    background: url("../images/images.png") no-repeat;
+    -webkit-background-size: auto 80px;
+    background-size: auto 80px;
+    height: 40px;
+ }
+#ignore {
+    background-position: -4.04rem 0;
+    width: 4.69rem;
+}
+#del {
+    background-position: -4.04rem -2.54rem;
+    /*background-position: -64px -40.7px;*/
+    width: 6.25rem;
 }
 
 /*device width blow 1200px*/
