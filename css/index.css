@@ -144,7 +144,7 @@ main aside{
     margin: 0 5px;
 }
 .paging .btn{
-    background: url("../images/paging.png");
+    background: url("../icon/paging.png");
     width: 40px;
     height: 40px;
     overflow: hidden;
@@ -221,7 +221,7 @@ main header {
 .close-btn {
     z-index: 6;
     position: absolute;
-    background: url("../images/images.png") -105.4px 0 no-repeat;
+    background: url("../icon/icon.png") -105.4px 0 no-repeat;
     -webkit-background-size: auto 60px;
     background-size: auto 60px;
     left: 43%;
@@ -314,7 +314,7 @@ main header {
     font-size: 1.1rem;
 }
 #bargain-able {
-    background: url("../images/images.png") 0px -1px no-repeat;
+    background: url("../icon/icon.png") 0px -1px no-repeat;
     -webkit-background-size: auto 50px;
     background-size: auto 50px;
     display: inline-block;
@@ -349,7 +349,7 @@ textarea {
 }
 .bottom-btn span {
     display: inline-block;
-    background: url("../images/images.png") no-repeat;
+    background: url("../icon/icon.png") no-repeat;
     -webkit-background-size: auto 80px;
     background-size: auto 80px;
     height: 40px;
