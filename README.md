@@ -13,28 +13,28 @@
 
 3. 初步数据交互格式：
 
-	`一、传前端（除特别标注均为string类型）： 	
-　　　1. 左侧列表： 
-　　　	   	goodId：商品ID（int类型） 
-　　　		portrait：用户头像src 
-　　　		title：商品标题
+	- 一、传前端（除特别标注均为string类型）： 	
+　　　- 1. 左侧列表： 
+　　　	- goodId：商品ID（int类型） 
+　　　	- portrait：用户头像src 
+　　　	- title：商品标题
 　　　
-　　　	2. 右侧商品详情： 
-　　　		goodId：商品ID（int类型）
-　　　time：发布日期（xx年xx月xx日）
-　　　portrait：用户头像src
-　　　userName：用户昵称
-　　　title：商品标题
-　　　picSrc：商品图片src
-　　　price：商品价格（int类型）
-　　　sort：分类
-　　　particulars：商品详情
-　　　bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
+　　　- 2. 右侧商品详情： 
+　　　	- goodId：商品ID（int类型）
+　　　	- time：发布日期（xx年xx月xx日）
+　　　	- portrait：用户头像src
+　　　	- userName：用户昵称
+　　　	- title：商品标题
+　　　	- picSrc：商品图片src
+　　　	- price：商品价格（int类型）
+　　　	- sort：分类
+　　　	- particulars：商品详情
+　　　	- bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
 
-　　　二、传后台（string类型） searKey：搜索关键字
+　　　- 二、传后台（string类型） searKey：搜索关键字
 　　　
-　　　根据关键词传输左侧列表数据，并默认加载第一条详情
-　　　`
+　　　	- 根据关键词传输左侧列表数据，并默认加载第一条详情
+　　　
 　　　
 　　　
 
@@ -81,5 +81,4 @@
 　　　1.操作成功返回字符串"success"；
 　　　2.操作失败返回字符串"fail"。
 　　　`
-
 
