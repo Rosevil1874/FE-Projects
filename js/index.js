@@ -1,5 +1,5 @@
 var	$pageNum = $("#page-num")
-	$lis = $("#item-list li")
+	$lis = $("#item-list li") || 0
 	len = $lis.length
 	pages = 0					//总页数
 	pageSize = 8				//每页8项条目
@@ -75,24 +75,24 @@ function paging(currentPage) {
 
 // 加载左侧列表数据
 function getData() {
-	// loading图标
-	// $("#loading").ajaxStart(function () {
-	// 	$(this).show()
-	// });
-	// $("#loading").ajaxStart(function () {
-	// 	$(this).hide()
-	// });
 	$.ajax({
 		type:"POST",
 		url:"../index.php",
+		dataType:"json",
+		// loading图标
+		beforeSend:function () {		
+			$("#loading").html("<img src='images/loading.gif'>")
+		},
 		error:function () {
 			// alert("加载失败")
+			$("#loading").html("")
 		},
 		success:function (data) {
 			var lis = "";
 			$each( data, function (index, item) {
 				lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
 			});
+			$("#loading").html("")
 			$("#item-list").html(lis)
 		}
 	});
@@ -103,6 +103,7 @@ function getDetail(target) {
 	$.ajax({
 		type:"POST",
 		url:"",
+		dataType:"json",
 		data:{
 			goodsId: target.id
 		},
@@ -135,6 +136,7 @@ function searchFor( key ) {
 	$.ajax({
 		type:"POST",
 		url:"",
+		dataType:"json",
 		data:{
 			searKey:key
 		},
@@ -161,13 +163,38 @@ function clearInput() {
 	})
 }
 
+// 忽略或删除被举报商品
+function IgnoreOrDel(type) {
+	var $ignoreId = $("#good-id").html()
+	
+	$.ajax({
+		type:"POST",
+		url:"",
+		dataType:"json",
+		data:{
+			signal:type
+		},
+		error:function () {
+			alert("操作失败")
+		},
+		success:function (data) {
+			if (data == "success") {
+				alert("操作成功")
+			} else {
+				alert("操作失败")
+			}
+		}
+	});
+}
+
+
 $(function () {
 
 	paging(1)			    // 初始化页面为第一页
 	getData()				// 加载左侧列表
 
 	// 默认加载第一条详情
-	var li = $.("#item-list li").eq(0);
+	var li = $("#item-list li").eq(0);
 	if ( $.type(li)  != "undefined" ) {
 		getDetail( li )
 	}
@@ -185,6 +212,14 @@ $(function () {
 		searchFor( searchText )
 	})
 	
-	clearInput()		//搜索框删除文本
+	//搜索框删除文本
+	clearInput()		
 
+	// 忽略或删除被举报商品
+	$("#ignore").click( function () {
+		IgnoreOrDel("ignore")
+	});
+	$("#del").click( function () {
+		IgnoreOrDel("del")	
+	});
 })

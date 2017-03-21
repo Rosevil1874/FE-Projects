@@ -47,10 +47,10 @@ input, select {
 
 /*===========================================custom===========================================*/
 html {
-    height: 92%;
+    height: 90%;
 }
 body {
-    height: 92%;
+    height: 90%;
     font-size: 16px;
     font-family: "微软雅黑";
     background-color: #b2b2b2;
@@ -81,6 +81,7 @@ main {
     line-height: 40px;
     border-top-left-radius: 7px; 
     border-bottom-left-radius: 7px; 
+    cursor:default;
 }
 .notice {
     top: 50px;
@@ -117,7 +118,8 @@ main aside{
     padding-top: 10px;
     padding-left: 25px;
     box-sizing: border-box;
-
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
 }
 .item-list li{
     height: 40px;
@@ -133,10 +135,21 @@ main aside{
     margin-right: 15px;
     vertical-align: middle;   /*文字图片对齐*/
 }
+#loading{
+    position: relative;
+    margin-top: -450px;
+    text-align: center;
+}
+#loading img{
+    width: 200px;
+    height: auto;
+}
 
 /*paging btn on the bottom of list*/
 .paging {
-    margin-top: -40px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     text-align: center;
 }
 .paging li {
@@ -177,81 +190,75 @@ main aside{
     color: gray;
     font-weight: bold;
 }
-#loading{
-    text-align: center;
-}
-#loading img{
-    width: 200px;
-    height: auto;
-    border: none;
-    display: none;
-}
 
 /*right side*/
 main header {
     position: absolute;
     left: 52.1%;
-    top: 50px;
+    top: 40px;
     width: 45.9%;
 }
-.search-text {
-    z-index: 5;
+.search-wrap {
     position: relative;
-    float: left;
-    width: 45%;
-    height: 40px;
-    line-height: 40px;
-    /*outline: none;*/
-    border: 1px solid #bcbcbc;
-    border-radius: 2px;
-    padding-left: 5px;
-    margin-left: 5px;
-}
-.search-btn {
-    position: absolute;
     left: 0;
-    top: -4px;
-    float: left;
-    width: 60%;
+    width: 350px;
     height: 50px;
-    color: #939393;
     background-color: #e6e6e6;
-    text-align: right;
-    font-size: 1.3rem;
-    padding-left: 15px;
-    padding-right: 2%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border: 1px solid #fff;
     -webkit-box-shadow: 1px 1px 1px gray;
     box-shadow: 1px 1px 1px gray;
-    cursor: pointer;
-    outline: none;
+}
+.search-text-wrap {
+    position: relative;
+    width: 280px;
+    height: 35px;
+}
+.search-text {
+    margin-top: 6px;
+    width: 100%;
+    height: 100%;
+    line-height: 35px;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin-left: 5px;
 }
 .close-btn {
-    z-index: 6;
     position: absolute;
     background: url("../images/icon.png") -105.4px 0 no-repeat;
     -webkit-background-size: auto 60px;
     background-size: auto 60px;
-    left: 43%;
+    right: -18px;
     top: 10px;
     width: 30px;
     height: 30px;
     cursor: pointer;
 }
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 12px;
+    font-size: 1.1rem;
+    border: none;
+    color: #939393;
+    background-color: #e6e6e6;
+    cursor: pointer;
+    outline: none;
+}
 #yiban-logo {
-    float: right;
-    margin-right: 7%;
-    margin-top: -20px;
-    width: 26%;
+    position: absolute;
+    right: 20px;
+    top: -5px;
+    width: 150px;
     height: auto;
 }
 
 /*detail*/
 .detail {
     position: absolute;
-    top: 120px;
+    top: 110px;
     left: 52.1%;
     width: 45%;
     background-color: #e6e6e6;
@@ -265,7 +272,7 @@ main header {
 .good {
     padding: 15px 20px;
     line-height: 25px;
-    width: 50%;
+    width: 45%;
     float: left;
 }
 .publish,
@@ -273,8 +280,8 @@ main header {
     color: gray;
 }
 .user {
-    float: left;
-    margin-left: 17%;
+    float: right;
+    margin-right:7%;
     margin-top: 15px;
 }
 .user img {
@@ -303,19 +310,18 @@ main header {
     height: 88px;
     border: 1px solid #bcbcbc;
 }
-.discribe {
+.discribe,
+.discribe-msg {
     float: left;
     margin-left: 25px;
     margin-top: 5px;
-    width: 25%;
+    width: 15%;
 }
-.discribe li {
+.discribe li,
+.discribe-msg li {
     width: 100%;
     height: 30px;
     line-height: 30px;
-}
-.price {
-    float: right;
 }
 #price-num {
     color: #ff5757;
@@ -328,11 +334,18 @@ main header {
     -webkit-background-size: auto 50px;
     background-size: auto 50px;
     display: inline-block;
-    float: right;
-    margin-right: -42px;
-    height: 25px;
+    height: 24px;
     width: 40px;
+    margin: 3px 0;
 }
+#sort {
+    float: right;
+}
+/*#price-num,
+#bargain-able,
+#sort {
+    width: 50%;
+}*/
 
 textarea {
     resize: none;
@@ -353,7 +366,6 @@ textarea {
     position: absolute;
     bottom: -20px;
     right: 40px;
-    cursor: pointer;
     width: 40%;
     height: 40px;
 }
@@ -363,6 +375,7 @@ textarea {
     -webkit-background-size: auto 80px;
     background-size: auto 80px;
     height: 40px;
+    cursor: pointer;
  }
 #ignore {
     background-position: -4.04rem 0;
@@ -374,45 +387,109 @@ textarea {
     width: 6.25rem;
 }
 
-/*device width blow 1200px*/
+/*媒体查询*/
 @media screen and (min-width:1200px) and (max-width: 1300px) {
     textarea {
-        height: 140px;
+        height: 130px;
+    }
+    .search-wrap{
+        width: 320px;
+    }
+    .search-text-wrap {
+        width: 250px;
+    }
+    #yiban-logo {
+        width: 130px;
     }
 }
-@media screen and (max-width: 1200px)  {
-    main aside{
-        width: 45%;
+@media screen and (min-width:1150px)  and (max-width: 1200px)  {
+    .search-wrap{
+        width: 300px;
     }
-    main header {
-        left: 47.1%;
+    .search-text-wrap {
+        width: 230px;
     }
-    .search-btn{
-        padding-right: 1%;
-        font-size: 1.2rem;
-    }
-    .detail {
-        width: 50%;
-        left: 47.1%;
-    }
-    .user {
-        margin-left: 11%;
-    }
-    .good-img {
-        margin-left: 10px;
-    }
-    .good-img img{
-        margin: 5px;
-    }
-    .discribe {
-        margin-left: 1%;
-        width: 30%;
+    #yiban-logo {
+        width: 120px;
     }
     textarea {
         height: 130px;
     }
     .bottom-btn {
-        width: 50%;
+        width: 40%;
+    }
+   /* .discribe {
+        width: 15%;
+    }
+    .discribe-msg {
+        width: 15%;
+    }*/
+}
+@media screen and (min-width:1000px)  and (max-width:1150px) {
+    .search-wrap{
+        width: 250px;
+    }
+    .search-text-wrap {
+        width: 180px;
+    }
+    #yiban-logo {
+        width: 130px;
+    }
+    textarea {
+        height: 120px;
+    }
+    .bottom-btn {
+        width: 45%;
+    }
+   /* .discribe {
+        width: 35%;
+    }*/
+}
+@media screen and (min-width:900px) and (max-width:1000px) {
+    .search-wrap{
+        width: 230px;
+    }
+    .search-text-wrap {
+        width: 160px;
+    }
+    #yiban-logo {
+        width: 110px;
+        top: 5px;
+    }
+    textarea {
+        height: 120px;
+    }
+    .bottom-btn {
+        width: 53%;
+    }
+     .discribe {
+        width: 20%;
+    }
+    .discribe-msg {
+        width: 20%;
     }
 }
-
+@media screen and (max-width:900px) {
+    .search-wrap{
+        width: 210px;
+    }
+    .search-text-wrap {
+        width: 140px;
+    }
+    #yiban-logo {
+        width: 100px;
+        top: 10px;
+    }
+    textarea {
+        height: 120px;
+    }
+    .bottom-btn {
+        width: 53%;
+    }
+    .discribe {
+        width: 20%;
+    }
+    .discribe-msg {
+        width: 20%;
+    }
+}

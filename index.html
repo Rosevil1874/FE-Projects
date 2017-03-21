@@ -16,9 +16,7 @@
 			<div class="report">举报管理</div>
 		</div>
 		<aside>
-			<!-- <div id="loading"></div> -->
 			<ul class="item-list" id="item-list">
-				<li id="loading"><img src="images/loading.gif"></li>
 				<!-- <li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）1</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）2</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）3</span></li>
@@ -51,6 +49,8 @@
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）30</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）31</span></li> -->
 			</ul>
+			<div id="loading"><img src='images/loading.gif'></div>
+
 			<ul class="paging">
 				<li class="btn" id="first-page"></li>
 				<li class="btn" id="prev-page"></li>
@@ -60,9 +60,13 @@
 			</ul>
 		</aside>
 		<header id="page-header">
-			<input type="text" name="search-text" id="search-text" class="search-text" placeholder="输入商品ID：" value="">
-			<span id="close-btn" class="close-btn"></span>
-			<input type="button" name="search-btn" class="search-btn" value="搜索">
+			<div class="search-wrap">
+				<div class="search-text-wrap">
+					<input type="text" name="search-text" id="search-text" class="search-text" placeholder="输入商品ID：" value="">
+					<span id="close-btn" class="close-btn"></span>
+				</div>
+				<input type="button" name="search-btn" class="search-btn" value="搜索">
+			</div>
 			<img src="images/logo.png" alt="易班yiban" id="yiban-logo">
 		</header>
 		<section class="detail">
@@ -82,9 +86,14 @@
 				<input id="good-title" name="good-title" type="text" value="标题：" readonly="true">
 				<img class="good-img" src="images/ice-bear.jpg">
 				<ul class="discribe">
-					<li>价格 <span class="price">￥<span id="price-num">999</span></span></li>
-					<li>可议价 <span id="bargain-able" ></span></li>
-					<li>分类：<span id="sort">杂七杂八</span></li>
+					<li>价格：</li>
+					<li>可议价：</li>
+					<li>分类：</li>
+				</ul>
+				<ul class="discribe-msg">
+					<li class="price">￥<span id="price-num">999</li>
+					<li id="bargain-able"></li>
+					<li id="sort">杂七杂八</li>
 				</ul>
 				<textarea id="particulars" readonly="true" value="商品详情：">商品详情：</textarea>
 			</form>
