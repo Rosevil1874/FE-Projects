@@ -119,6 +119,7 @@ main aside{
     padding-left: 25px;
     box-sizing: border-box;
     border: 1px solid #bcbcbc;
+    border-bottom: none;
     border-radius: 5px;
 }
 .item-list li{
@@ -139,6 +140,7 @@ main aside{
     position: relative;
     margin-top: -450px;
     text-align: center;
+    color: #bcbcbc;
 }
 #loading img{
     width: 200px;

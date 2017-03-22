@@ -1,6 +1,6 @@
 var	$pageNum = $("#page-num")
-	$lis = $("#item-list li") || 0
-	len = $lis.length
+	$lis = $("#item-list li")
+	len = $lis.length || 0
 	pages = 0					//总页数
 	pageSize = 8				//每页8项条目
 
@@ -10,7 +10,7 @@ var	$pageNum = $("#page-num")
 	} else {
 		pages = Math.floor(len/pageSize) + 1
 	}
-
+	
 // 翻页函数, currentPage-当前页码， pageSize-每页条目数
 function paging(currentPage) {
 	var curr = currentPage
@@ -77,38 +77,51 @@ function paging(currentPage) {
 function getData() {
 	$.ajax({
 		type:"POST",
-		url:"../index.php",
+		url:"../list.php",
 		dataType:"json",
+		contentType:"application/json;charset=utf-8",
 		// loading图标
-		beforeSend:function () {		
+		beforeSend:function () {
+			$("#item-list").html("")			
 			$("#loading").html("<img src='images/loading.gif'>")
 		},
 		error:function () {
-			// alert("加载失败")
-			$("#loading").html("")
+			$("#loading").html("加载失败")
 		},
 		success:function (data) {
-			var lis = "";
-			$each( data, function (index, item) {
-				lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
-			});
-			$("#loading").html("")
-			$("#item-list").html(lis)
+			if ($.isEmptyObject(data)) {
+				$("#loading").html("当前没有举报信息")
+			} else {
+				var lis = "";
+				$.each( data, function (index, item) {
+					lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
+				});
+				$("#loading").html("")
+				$("#item-list").html(lis)
+			}
+
+			// 默认加载第一条详情
+			var li = $("#item-list li").eq(0);
+			if ( $.type(li)  != "undefined" ) {
+				getDetail( li )
+			}
 		}
 	});
 }
 
 // 右侧详细信息联动
 function getDetail(target) {
+	var thisId = targrt.attr("id")
 	$.ajax({
 		type:"POST",
-		url:"",
+		url:"../detail.php",
 		dataType:"json",
+		contentType:"application/json;charset=utf-8",
 		data:{
-			goodsId: target.id
+			goodsId: thisId
 		},
 		error:function () {
-			// alert("加载失败")
+			alert("商品详情加载失败")
 		},
 		success:function (data) {
 			$("#good-id").html(data.goodId)
@@ -126,7 +139,6 @@ function getDetail(target) {
 			} else {
 				$("#bargain-able").css("background-position","0px -26px")
 			}
-			
 		}
 	});
 }
@@ -137,19 +149,28 @@ function searchFor( key ) {
 		type:"POST",
 		url:"",
 		dataType:"json",
+		contentType:"application/json;charset=utf-8",
 		data:{
 			searKey:key
 		},
+		beforeSend:function () {	
+			$("#item-list").html("")	
+			$("#loading").html("<img src='images/loading.gif'>")
+		},
 		error:function () {
-			alert("加载失败")
+			$("#loading").html("加载失败")
 		},
 		success:function (data) {
-			$("#item-list").html("")
-			var lis = "";
-			$each( data, function (index, item) {
-				lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
-			});
-			$("#item-list").html(lis)
+			if ($.isEmptyObject(data)) {
+				$("#loading").html("没有匹配的举报信息")
+			} else {
+				var lis = "";
+				$.each( data, function (index, item) {
+					lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
+				});
+				$("#loading").html("")
+				$("#item-list").html(lis)
+			}
 		}
 	});
 }
@@ -171,6 +192,7 @@ function IgnoreOrDel(type) {
 		type:"POST",
 		url:"",
 		dataType:"json",
+		contentType:"application/json;charset=utf-8",
 		data:{
 			signal:type
 		},
@@ -190,14 +212,14 @@ function IgnoreOrDel(type) {
 
 $(function () {
 
-	paging(1)			    // 初始化页面为第一页
-	getData()				// 加载左侧列表
-
-	// 默认加载第一条详情
-	var li = $("#item-list li").eq(0);
-	if ( $.type(li)  != "undefined" ) {
-		getDetail( li )
+	// 初始化页面为第一页
+	if ( pages > 0 ) {
+		console.log("haha");
+		paging(1)
 	}
+	
+	// 加载左侧列表		    
+	getData()				
 	
 	// 点击加载详情
 	$("#item-list").click( function (event) {
@@ -207,7 +229,7 @@ $(function () {
 	} );
 
 	// 点击搜索
-	$("#search-btn").click( function (event) {
+	$("#search-btn").click( function () {
 		var searchText = $("#search-text").val()
 		searchFor( searchText )
 	})
