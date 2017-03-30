@@ -17,7 +17,7 @@
 		</div>
 		<aside>
 			<ul class="item-list" id="item-list">
-				<!-- <li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）1</span></li>
+				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）1</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）2</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）3</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）4</span></li>
@@ -47,9 +47,9 @@
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）28</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）29</span></li>
 				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）30</span></li>
-				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）31</span></li> -->
+				<li><img src="images/yin.jpg" alt="user head portrait[用户头像]"><span>专辑全新未拆封（商品标题）31</span></li>
 			</ul>
-			<div id="loading"><img src='images/loading.gif'></div>
+			<div id="loading"></div>
 
 			<ul class="paging">
 				<li class="btn" id="first-page"></li>
@@ -71,6 +71,10 @@
 		</header>
 		<section class="detail">
 			<form>
+				<canvas class="good-img" width="300" height="200">
+					您的浏览器版本太低，请更新！
+				</canvas>
+				<!-- <img  src="images/ice-bear.jpg"> -->
 				<div class="good">
 					<p>
 						商品ID：<span id="good-id">20170302001</span>
@@ -78,24 +82,25 @@
 					<p class="publish">
 						发布时间：<span id="publish-time">17/03/02</span>
 					</p>
-				</div>
-				<div class="user">
-					<img src="images/yin.jpg" alt="user head portrait[用户头像]">
-					<span id="user-name">傻了吧吧</span>
+					<div class="user">
+						<img src="images/yin.jpg" alt="user head portrait[用户头像]">
+						<span id="user-name">傻了吧吧</span>
+					</div>
 				</div>
 				<input id="good-title" name="good-title" type="text" value="标题：" readonly="true">
-				<img class="good-img" src="images/ice-bear.jpg">
-				<ul class="discribe">
-					<li>价格：</li>
-					<li>可议价：</li>
-					<li>分类：</li>
-				</ul>
-				<ul class="discribe-msg">
-					<li class="price">￥<span id="price-num">999</li>
-					<li id="bargain-able"></li>
-					<li id="sort">杂七杂八</li>
-				</ul>
-				<textarea id="particulars" readonly="true" value="商品详情：">商品详情：</textarea>
+				<div class="discribe">
+					<span class="left">商品详情：</span>
+					<ul class="right">
+						<li>【价格：￥<span id="price-num">999</li>
+						<li>可议价：<span id="bargain-able">是</span></li>
+						<li>分类：<span id="sort">杂七杂八 心心水水</span>】</li>
+					</ul>
+					<textarea id="particulars" readonly="true" value="">
+残更目断传书雁
+尺素还稀
+一味相思
+准拟相看似旧时</textarea>
+				</div>
 			</form>
 			<div class="bottom-btn">
 				<span id="ignore"></span>

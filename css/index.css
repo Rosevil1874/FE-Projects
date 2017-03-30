@@ -7,15 +7,8 @@ form, aside, header, section{
     outline:0;
     font-size:100%;
     vertical-align:baseline;
+    box-sizing: border-box;
     background:transparent;
-}
-
-body {
-    line-height:1;
-}
-
-:focus {
-  outline: 1;
 }
 
 /*IE do not surpport HTML5 tags*/
@@ -46,20 +39,23 @@ input, select {
 }
 
 /*===========================================custom===========================================*/
-html {
-    height: 90%;
-}
 body {
-    height: 90%;
-    font-size: 16px;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    font-size: 14px;
     font-family: "微软雅黑";
-    background-color: #b2b2b2;
+    background-color: #b1b1b1;
+    line-height:1;
 }
 main {
-    position: relative;
-    width: 88.8%;
-    height: 100%;
-    margin: 50px auto;
+    position: absolute;
+    width: 1200px;
+    height: 680px;
+    top: 50%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -600px;
     padding-top: 1px;
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 1px gray;
@@ -68,7 +64,7 @@ main {
 
 /*aside button*/
 .aside-btn {
-    /*-ms-writing-mode: tb-lr;    这里加上的话会把列表挤掉*/
+   /* -ms-writing-mode: tb-lr;    这里加上的话会把列表挤掉*/
     writing-mode: vertical-lr;
     text-align: center;
 }
@@ -98,10 +94,10 @@ main {
 main aside{
     position: relative;
     z-index: 10;
-    width: 50%;
-    height: 90%;
-    margin-top: 2%;
-    margin-left: 2%;
+    width: 570px;
+    height: 630px;
+    margin-top: 25px;
+    margin-left: 30px;
     background-color: #e6e6e6;
     border: 1px solid #fff;
     border-radius: 7px;
@@ -109,22 +105,19 @@ main aside{
     box-shadow: 1px 2px 1px gray;
 }
 .item-list {
-    width: 95%;
-    height: 95%;
+    width: 542px;
+    height: 592px;
     background-color: #fff;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
+    margin-top: 19px;
+    margin-left: 14px;
     padding-left: 25px;
-    box-sizing: border-box;
     border: 1px solid #bcbcbc;
     border-bottom: none;
     border-radius: 5px;
 }
 .item-list li{
     height: 40px;
-    margin: 15px 0;
+    margin: 20px 0;
     line-height: 40px;
     cursor: pointer;
 }
@@ -150,7 +143,7 @@ main aside{
 /*paging btn on the bottom of list*/
 .paging {
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
     width: 100%;
     text-align: center;
 }
@@ -182,6 +175,7 @@ main aside{
     background-position: -203px -3px;
 }
 #page-num {
+    width: 80px;
     font-size: 1.3rem;
     color: #bbb;
     letter-spacing: 10px;
@@ -196,9 +190,9 @@ main aside{
 /*right side*/
 main header {
     position: absolute;
-    left: 52.1%;
+    left: 600px;
     top: 40px;
-    width: 45.9%;
+    width: 570px;
 }
 .search-wrap {
     position: relative;
@@ -226,10 +220,16 @@ main header {
     border-radius: 5px;
     padding-left: 5px;
     margin-left: 5px;
+    background-color: #fbfbfb;
+    outline: none;
+}
+.search-text:focus {
+    -webkit-box-shadow: 0px 0px 20px white;
+    box-shadow: 0px 0px 20px white;
 }
 .close-btn {
     position: absolute;
-    background: url("../images/icon.png") -105.4px 0 no-repeat;
+    background: url("../images/icon.png") -58px 0 no-repeat;
     -webkit-background-size: auto 60px;
     background-size: auto 60px;
     right: -18px;
@@ -252,7 +252,7 @@ main header {
 #yiban-logo {
     position: absolute;
     right: 20px;
-    top: -5px;
+    top: -10px;
     width: 150px;
     height: auto;
 }
@@ -260,9 +260,10 @@ main header {
 /*detail*/
 .detail {
     position: absolute;
-    top: 110px;
-    left: 52.1%;
-    width: 45%;
+    top: 100px;
+    left: 600px;
+    width: 570px;
+    height: 540px;
     background-color: #e6e6e6;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -271,10 +272,17 @@ main header {
     box-shadow: 1px 1px 1px gray;
     font-size: 0.9rem;
 }
+.good-img {
+    margin:20px 20px 10px 20px;
+    float: left;
+    /*width: 300px;
+    height: 200px;*/
+    border: 1px solid #bcbcbc;
+}
 .good {
-    padding: 15px 20px;
-    line-height: 25px;
-    width: 45%;
+    padding: 30px 20px;
+    line-height: 30px;
+    width: 200px;
     float: left;
 }
 .publish,
@@ -282,93 +290,70 @@ main header {
     color: gray;
 }
 .user {
-    float: right;
-    margin-right:7%;
-    margin-top: 15px;
+    margin-top: 40px;
+    font-size: 17px;
 }
 .user img {
     vertical-align: middle;
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
+    width: 65px;
+    height: 65px;
+    border-radius: 65px;
     border: 1px solid #e6e6e6;
+    margin-right: 10px;
 }
 #good-title {
     width: 90%;
-    height: 40px;
-    line-height: 40px;
+    height: 35px;
+    line-height: 35px;
     margin-left: 15px;
     padding-left: 15px;
-    background-color: #fcfcfc;
-    border: 1px solid #bcbcbc;
-    border-radius: 3px;
-    color: #767c8b;
-}
-
-.good-img {
-    margin:1% 6%;
-    float: right;
-    width: 88px;
-    height: 88px;
-    border: 1px solid #bcbcbc;
-}
-.discribe,
-.discribe-msg {
-    float: left;
-    margin-left: 25px;
-    margin-top: 5px;
-    width: 15%;
-}
-.discribe li,
-.discribe-msg li {
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-}
-#price-num {
-    color: #ff5757;
-    font-size: 1.1rem;
-}
-#bargain-able {
-    background: url("../images/icon.png");
-    background-position: 0px -1px;
-    background-repeat: no-repeat;
-    -webkit-background-size: auto 50px;
-    background-size: auto 50px;
-    display: inline-block;
-    height: 24px;
-    width: 40px;
-    margin: 3px 0;
-}
-#sort {
-    float: right;
-}
-/*#price-num,
-#bargain-able,
-#sort {
-    width: 50%;
-}*/
-
-textarea {
-    resize: none;
-    color: #767c8b;
-    width: 93%;
-    height: 175px;
-    box-sizing: border-box;
-    margin-left: 15px;
-    margin-bottom: 25px;
-    padding-left: 15px;
-    padding-top: 10px;
-    outline: none;
+    background-color: #fbfbfb;
     border: 1px solid #bcbcbc;
     border-radius: 5px;
+    color: #767c8b;
+}
+
+.discribe {
+    width: 93%;
+    height: 220px;
+    margin: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fbfbfb;
+    -webkit-box-shadow: 1px 1px 1px #ccc inset;
+    box-shadow: 1px 1px 1px #ccc inset;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+    margin-right: 30px;
+}
+.right li {
+    float: left;
+    margin-left: 20px;
+}
+textarea {
+    resize: none;
+    width: 98%;
+    height: 165px;
+    padding-top: 15px;
+    line-height: 20px;
+    color: #767c8b;
+    background-color: #fbfbfb;
+    border: none;
+    outline: none;
 }
 
 .bottom-btn {
     position: absolute;
     bottom: -20px;
-    right: 40px;
-    width: 40%;
+    right: 25px;
+    width: 200px;
     height: 40px;
 }
 .bottom-btn span {
@@ -380,118 +365,10 @@ textarea {
     cursor: pointer;
  }
 #ignore {
-    background-position: -4.04rem 0;
+    background-position: 0 0;
     width: 4.69rem;
 }
 #del {
-    background-position: -4.04rem -2.54rem;
-    /*background-position: -64px -40.7px;*/
+    background-position: 0 -2.54rem;
     width: 6.25rem;
-}
-
-/*媒体查询*/
-@media screen and (min-width:1200px) and (max-width: 1300px) {
-    textarea {
-        height: 130px;
-    }
-    .search-wrap{
-        width: 320px;
-    }
-    .search-text-wrap {
-        width: 250px;
-    }
-    #yiban-logo {
-        width: 130px;
-    }
-}
-@media screen and (min-width:1150px)  and (max-width: 1200px)  {
-    .search-wrap{
-        width: 300px;
-    }
-    .search-text-wrap {
-        width: 230px;
-    }
-    #yiban-logo {
-        width: 120px;
-    }
-    textarea {
-        height: 130px;
-    }
-    .bottom-btn {
-        width: 40%;
-    }
-   /* .discribe {
-        width: 15%;
-    }
-    .discribe-msg {
-        width: 15%;
-    }*/
-}
-@media screen and (min-width:1000px)  and (max-width:1150px) {
-    .search-wrap{
-        width: 250px;
-    }
-    .search-text-wrap {
-        width: 180px;
-    }
-    #yiban-logo {
-        width: 130px;
-    }
-    textarea {
-        height: 120px;
-    }
-    .bottom-btn {
-        width: 45%;
-    }
-   /* .discribe {
-        width: 35%;
-    }*/
-}
-@media screen and (min-width:900px) and (max-width:1000px) {
-    .search-wrap{
-        width: 230px;
-    }
-    .search-text-wrap {
-        width: 160px;
-    }
-    #yiban-logo {
-        width: 110px;
-        top: 5px;
-    }
-    textarea {
-        height: 120px;
-    }
-    .bottom-btn {
-        width: 53%;
-    }
-     .discribe {
-        width: 20%;
-    }
-    .discribe-msg {
-        width: 20%;
-    }
-}
-@media screen and (max-width:900px) {
-    .search-wrap{
-        width: 210px;
-    }
-    .search-text-wrap {
-        width: 140px;
-    }
-    #yiban-logo {
-        width: 100px;
-        top: 10px;
-    }
-    textarea {
-        height: 120px;
-    }
-    .bottom-btn {
-        width: 53%;
-    }
-    .discribe {
-        width: 20%;
-    }
-    .discribe-msg {
-        width: 20%;
-    }
 }

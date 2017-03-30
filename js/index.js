@@ -2,7 +2,7 @@ var	$pageNum = $("#page-num")
 	$lis = $("#item-list li")
 	len = $lis.length || 0
 	pages = 0					//总页数
-	pageSize = 8				//每页8项条目
+	pageSize = 9				//每页8项条目
 
 	// 计算总页数
 	if (len%pageSize == 0) {
@@ -134,10 +134,20 @@ function getDetail(target) {
 			$("#sort").html(data.sort)
 			$("#particulars").html(data.particulars)
 
+			// 剪裁商品图片
+			var canvas = $(".good-img")[0]
+			var	ctx = canvas.getContext("2d")
+			var	img = new Image()
+			img.src = data.portrait
+			img.onload = function () {
+				ctx.drawImage(img, 0, 0, 300, 200, 0, 0, 300, 200)
+			}
+			
+			// 可否议价
 			if (data.bargin == 1) {
-				$("#bargain-able").css("background-position","0px -1px")
+				$("#bargain-able").html("是")
 			} else {
-				$("#bargain-able").css("background-position","0px -26px")
+				$("#bargain-able").html("否")
 			}
 		}
 	});
@@ -211,15 +221,38 @@ function IgnoreOrDel(type) {
 
 
 $(function () {
-
+	var canvas = $(".good-img")[0]
+	var	ctx = canvas.getContext("2d")
+	var	img = new Image()
+	img.src = "images/ice-bear.jpg"
+	img.onload = function () {
+		var w = img.width
+		var h = img.height
+		// 拉伸图片
+		if (w < 300 ||h < 200) {
+			ctx.drawImage(img, 0, 0, w, h, 0, 0, 300, 200)
+		}
+		// 裁剪图片中间部分
+		else {
+			var dw = w - 300
+			var dh = h - 200
+			// if (dw > dh) {
+			// 	var ratio = 200/h
+			// 	ctx.drawImage(img, dw*ratio/2, 0, w*ratio, h, 0, 0, 300, 200)
+			// } else {
+			// 	var ratio = 300/w
+				ctx.drawImage(img, dw/2, dh/2, w, h, 0, 0, w, h)
+			// }
+		}
+	}
+	
 	// 初始化页面为第一页
 	if ( pages > 0 ) {
-		console.log("haha");
 		paging(1)
 	}
 	
 	// 加载左侧列表		    
-	getData()				
+	// getData()				
 	
 	// 点击加载详情
 	$("#item-list").click( function (event) {
