@@ -224,25 +224,30 @@ $(function () {
 	var canvas = $(".good-img")[0]
 	var	ctx = canvas.getContext("2d")
 	var	img = new Image()
-	img.src = "images/ice-bear.jpg"
+	img.src = "images/ice-bearmin.jpg"
 	img.onload = function () {
 		var w = img.width
 		var h = img.height
-		// 拉伸图片
-		if (w < 300 ||h < 200) {
-			ctx.drawImage(img, 0, 0, w, h, 0, 0, 300, 200)
-		}
+		var dw = 300/w
+		var dh = 200/h
+		var ratio		//图片与canvas的宽高比
 		// 裁剪图片中间部分
-		else {
-			var dw = w - 300
-			var dh = h - 200
-			// if (dw > dh) {
-			// 	var ratio = 200/h
-			// 	ctx.drawImage(img, dw*ratio/2, 0, w*ratio, h, 0, 0, 300, 200)
-			// } else {
-			// 	var ratio = 300/w
-				ctx.drawImage(img, dw/2, dh/2, w, h, 0, 0, w, h)
-			// }
+		if(w > 300 && h > 200 || w < 300 && h < 200){
+			if (dw > dh) {
+				ctx.drawImage(img, 0, h*(1-dw)/2, w, h*dw, 0, 0, 300, 200)
+			} else {
+				ctx.drawImage(img, w*(1-dh)/2, 0, w*dh, h, 0, 0, 300, 200)
+			}
+		}
+		// 拉伸图片
+		else{
+			if(w < 300){
+				ratio = w/300
+				ctx.drawImage(img, 0, h*(1-ratio)/2, w, h*ratio, 0, 0, 300, 200)
+			}else {
+				ratio = h/200
+				ctx.drawImage(img, w*(1-ratio)/2, 0, w*ratio, h, 0, 0, 300, 200)
+			}
 		}
 	}
 	
