@@ -18,11 +18,12 @@
 	#### 一、传前端（除特别标注均为string类型）： 	
 	　　　1. 左侧列表：
 
-		`goodId：商品ID（int类型）
+		goodId：商品ID（int类型）
 		portrait：用户头像src
-		title：商品标题`
+		title：商品标题
 	　　　
 	　　　2. 右侧商品详情： 
+
 	　　　	goodId：商品ID（int类型）
 	　　　	time：发布日期（xx年xx月xx日）
 	　　　	portrait：用户头像src
@@ -47,11 +48,13 @@
 3. 当前数据交互格式：
 	#### 一、加载项：传前端（除特别标注均为string类型）：
 	　　　1. 左侧列表：
+
 	　　　goodId：商品ID（int类型）
 	　　　portrait：用户头像src
 	　　　title：商品标题
 	　　　
 	　　　2. 右侧商品详情：
+
 	　　　goodId：商品ID（int类型）
 	　　　time：发布日期（xx年xx月xx日）
 	　　　portrait：用户头像src
@@ -69,12 +72,16 @@
 　　　
 	#### 二、搜索：
 	　　	1. 传后台
+
 	　　　searKey：搜索关键字（string类型）
+
 	　　　2. 传前端
+
 	　　　根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
 	　　　
 	#### 三、忽略/删除
 	　　　1. 传后台
+
 	　　　signal:  "ignore"或"del"（string类型）
 	　　　goodId: 商品ID（int类型）
 	　　　
@@ -82,6 +89,7 @@
 	　　　b) signal=del时，将商品信息同时从举报列表和商品总列表中移除。
 	　　　
 	　　　2. 传前端
+	
 	　　　对ignore和del均适用：
 	　　　1. 操作成功返回字符串"success"；
 	　　　2. 操作失败返回字符串"fail"。
