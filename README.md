@@ -21,8 +21,7 @@
 		goodId：商品ID（int类型）
 		portrait：用户头像src
 		title：商品标题
-		```
-	　　　
+		```　　
 	2. 右侧商品详情： 
 		```
 		goodId：商品ID（int类型）
@@ -55,8 +54,7 @@
 		goodId：商品ID（int类型）
 		portrait：用户头像src
 		title：商品标题
-		```
-	　　　
+		```　
 	2. 右侧商品详情：
 		```
 		goodId：商品ID（int类型）
@@ -77,24 +75,25 @@
 　　　
 	#### 二、搜索：
 	1. 传后台
-		searKey：搜索关键字（string类型）
+	searKey：搜索关键字（string类型）
 
 	2. 传前端
-		根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
+	根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
 	　　　
 	#### 三、忽略/删除
 	1. 传后台
-
+		```
 		signal:  "ignore"或"del"（string类型）
 		goodId: 商品ID（int类型）
 		a) signal=ignore时，将商品信息从举报列表中移除；
 		b) signal=del时，将商品信息同时从举报列表和商品总列表中移除。
-
+		```
 	2. 传前端
-
+		```
 		对ignore和del均适用：
 		1. 操作成功返回字符串"success"；
 		2. 操作失败返回字符串"fail"。
+		```
 　　　
 ## 2017/03/22
 1. 可议价按钮还没商量好
