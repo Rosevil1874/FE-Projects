@@ -17,9 +17,10 @@
 
 	#### 一、传前端（除特别标注均为string类型）： 	
 	　　　1. 左侧列表：
-		goodId：商品ID（int类型） 
-		portrait：用户头像src 
-		title：商品标题
+
+		`goodId：商品ID（int类型）
+		portrait：用户头像src
+		title：商品标题`
 	　　　
 	　　　2. 右侧商品详情： 
 	　　　	goodId：商品ID（int类型）
