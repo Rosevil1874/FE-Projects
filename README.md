@@ -17,13 +17,14 @@
 
 	#### 一、传前端（除特别标注均为string类型）： 	
 	1. 左侧列表：
-
+		```
 		goodId：商品ID（int类型）
 		portrait：用户头像src
 		title：商品标题
+		```
 	　　　
 	2. 右侧商品详情： 
-
+		```
 		goodId：商品ID（int类型）
 		time：发布日期（xx年xx月xx日）
 		portrait：用户头像src
@@ -34,6 +35,7 @@
 		sort：分类
 		particulars：商品详情
 		bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
+		```
 
 	#### 二、传后台（string类型） 
 		searKey：搜索关键字
@@ -56,7 +58,7 @@
 		```
 	　　　
 	2. 右侧商品详情：
-
+		```
 		goodId：商品ID（int类型）
 		time：发布日期（xx年xx月xx日）
 		portrait：用户头像src
@@ -67,28 +69,28 @@
 		sort：分类
 		particulars：商品详情
 		bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
+		```
 	　　　
 	>注：
 	1. 初始化时加载全部商品的ID、用户头像、标题到左侧列表，默认加载第一项详情。
 	2. 点击左侧条目时，传商品ID到后台，后台根据ID检索并返回商品详细信息到前端。
 　　　
 	#### 二、搜索：
-		1. 传后台
-	　　　searKey：搜索关键字（string类型）
+	1. 传后台
+		searKey：搜索关键字（string类型）
 
-		2. 传前端
+	2. 传前端
 		根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
 	　　　
 	#### 三、忽略/删除
-	　　　1. 传后台
+	1. 传后台
 
 		signal:  "ignore"或"del"（string类型）
 		goodId: 商品ID（int类型）
-	　　　
 		a) signal=ignore时，将商品信息从举报列表中移除；
 		b) signal=del时，将商品信息同时从举报列表和商品总列表中移除。
-	　　　
-	　　　2. 传前端
+
+	2. 传前端
 
 		对ignore和del均适用：
 		1. 操作成功返回字符串"success"；
