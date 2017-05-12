@@ -94,7 +94,7 @@ function getData() {
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
-					lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
+					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + " alt='用户头像'><span>" + item.title + "</span></li>"
 				});
 				$("#loading").html("")
 				$("#item-list").html(lis)
@@ -118,27 +118,27 @@ function getDetail(target) {
 		dataType:"json",
 		contentType:"application/json;charset=utf-8",
 		data:{
-			goodsId: thisId
+			gid: thisId
 		},
 		error:function () {
 			alert("商品详情加载失败")
 		},
 		success:function (data) {
-			$("#good-id").html(data.goodId)
-			$("#publish-time").html(data.time)
-			$(".user img").attr("src",data.portrait) 
-			$("#user-name").html(data.userName)
+			$("#good-id").html(data.gid)//
+			$("#publish-time").html(data.release_time)
+			$(".user img").attr("src",data.yb_userhead_url) 
+			$("#user-name").html(data.sellername)
 			$("#good-title").val("标题：" + data.title)
-			$("#good-img").html(data.picSrc)
+			$("#good-img").html(data.pic_url)
 			$("#price-num").html(data.price)
-			$("#sort").html(data.sort)
-			$("#particulars").html(data.particulars)
+			$("#sort").html(data.labelArray)  
+			$("#particulars").html(data.detail)
 
 			// 剪裁商品图片
 			var canvas = $(".good-img")[0]
 			var	ctx = canvas.getContext("2d")
 			var	img = new Image()
-			img.src = data.portrait
+			img.src = data.pic_url
 			img.onload = function () {
 				ctx.drawImage(img, 0, 0, 300, 200, 0, 0, 300, 200)
 			}
@@ -148,6 +148,34 @@ function getDetail(target) {
 				$("#bargain-able").html("是")
 			} else {
 				$("#bargain-able").html("否")
+			}
+
+			var canvas = $(".good-img")[0]
+			var	ctx = canvas.getContext("2d")
+			var	img = new Image()
+			img.src = "images/ice-bear.jpg"
+			img.onload = function () {
+				var w = img.width
+				var h = img.height
+				var dw = 300/w 			//canvas与图片的宽高比
+				var dh = 200/h
+				var ratio		
+				// 裁剪图片中间部分
+				if(w > 300 && h > 200 || w < 300 && h < 200){
+					if (dw > dh) {
+						ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
+					} else {
+						ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
+					}
+				}
+				// 拉伸图片
+				else{
+					if(w < 300){
+						ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
+					}else {
+						ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
+					}
+				}
 			}
 		}
 	});
@@ -176,7 +204,7 @@ function searchFor( key ) {
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
-					lis += "<li id='" + item.goodId + "'><img src='" + item.portrait + " alt='用户头像'><span>" + item.title + "</span></li>"
+					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + " alt='用户头像'><span>" + item.title + "</span></li>"
 				});
 				$("#loading").html("")
 				$("#item-list").html(lis)
@@ -221,33 +249,6 @@ function IgnoreOrDel(type) {
 
 
 $(function () {
-var canvas = $(".good-img")[0]
-var	ctx = canvas.getContext("2d")
-var	img = new Image()
-img.src = "images/ice-bear.jpg"
-img.onload = function () {
-	var w = img.width
-	var h = img.height
-	var dw = 300/w 			//canvas与图片的宽高比
-	var dh = 200/h
-	var ratio		
-	// 裁剪图片中间部分
-	if(w > 300 && h > 200 || w < 300 && h < 200){
-		if (dw > dh) {
-			ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
-		} else {
-			ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
-		}
-	}
-	// 拉伸图片
-	else{
-		if(w < 300){
-			ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
-		}else {
-			ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
-		}
-	}
-}
 	
 	// 初始化页面为第一页
 	if ( pages > 0 ) {
