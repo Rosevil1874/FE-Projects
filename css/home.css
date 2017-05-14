@@ -54,7 +54,8 @@
 	display: none;
 	position: absolute;
 	top: 300px;
-	width: auto;height: 140px;
+	width: auto;
+	height: 140px;
 	font-size: 100px;
 	font-weight: bold;
 	color: rgba(255, 255, 255, .5);
@@ -68,7 +69,7 @@
 	right: 20px;
 }
 .arrow:hover {
-	color: rgba(255, 255, 255, .8);
+	color: rgba(255, 255, 255, .9);
 }
 .carousel:hover .arrow {
 	display: block;
@@ -83,7 +84,7 @@
 	-o-transform: translateX(-250px);
 	transform: translateX(-250px);
 	display: block;
-	margin: 200px auto 0 auto;
+	margin-top: 200px;
 }
 
 /*发起呼吁*/
@@ -110,7 +111,7 @@ main {
 }
 /*分类展示复用活动[activity]页面样式*/
 .activities {
-	width: 80%;
+	width: 70%;
 	margin: 20px auto;
 	border-radius: 15px;
 	background-color: white;
@@ -179,40 +180,30 @@ main {
 	display: inline-block;
 	width: 30%;
 	height: 0;
-	margin: 0 50px 10px 50px;
+	margin: 0 4% .4em 4%;
 	border-bottom: 1px solid black;
 }
 .news {
 	width: 80%;
 	margin: 0 auto;
+	padding: 50px;
 	background-color: #fff;
-}
-.half-width {
-	width: 50%;
-	float: left;
-}
-.newest img{
-	width: 100%;
-}
-.newest .newest-detail h4{
-	text-align: center;
-}
-.newest .newest-detail p {
-	text-indent: 2em;
-	margin: 0;
-	padding: 0 20px 50px 20px;
-}
-.lately {
-	float: right;
 }
 .package {
 	position: relative;
 	width: 400px;
 	height: 200px;
-	margin: 50px 0 50px 150px;
-	/*overflow: hidden;*/
+	margin: 50px;
+}
+.left {
+	float: left;
+	margin-left: 100px;
+}
+.right {
+	float: right;
 }
 .package>span {
+	z-index: 10;
 	position: absolute;
 	top: 10px;
 	left: -60px;
@@ -274,4 +265,118 @@ main {
 	margin-top: 0;
 	padding-left: 100px;
 	padding-right: 40px;
+}
+
+/*===================================== 响应式设计 ===============================*/
+/*对应bootstrap栅格系统的设备划分*/
+/*lg设备：大屏幕-桌面*/
+@media screen and (min-width: 1200px) {
+	
+}
+/*md设备：中屏幕-桌面*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+	.activities {
+		width: 80%;
+	}
+}
+/*sm设备：小屏幕-平板*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	
+}
+/*xs设备：手机*/
+@media screen and (max-width: 767px) {
+	/*图片轮播*/
+	.carousel {
+		padding-top: 0;
+		height: 350px;
+	}
+	#slogan {
+		width: 200px;
+		height: 250px;
+		-webkit-transform: translateX(-100px);
+		-ms-transform: translateX(-100px);
+		-o-transform: translateX(-100px);
+		transform: translateX(-100px);
+		margin-top: 50px;
+	}
+	.circles {
+		width: 100px;
+		height: 20px;
+		margin: 0 auto;
+	}
+	.circles span {
+		top: 300px;
+		width: 15px;
+		height: 15px;
+		margin-right: 5px;
+		margin-left: 5px;
+		border: 1px solid white;
+		border-radius: 15px;
+	}
+	.arrow {
+		top: 120px;
+		width: auto;
+		height: 70px;
+		font-size: 50px;
+	}
+	#prev {
+		left: 10px;
+	}
+	#next {
+		right: 10px;
+	}
+
+	/*减少宣传标语*/
+	.call-on>p:not(:first-of-type) {
+		display: none;
+	}
+	.call-on {
+		margin: 50px 0;
+		padding: 0 20px 70px 20px;
+		font-size: 1em;
+	}
+	.call-on strong {
+		font-size: 1.5em;
+		margin-right: 5px;
+	}
+
+	/*分割线*/
+	.line-between {
+		font-size: 1em;
+	}
+
+	/*公益活动*/
+	.wrap1>img,
+	.wrap3>img{
+	  border-radius: 0;
+	}
+
+	/*往期精彩*/
+	.news {
+		width: 100%;
+		padding: 20px 0;
+	}
+	.package {
+		float: left;
+		margin: 20px auto;
+	}
+	.package>span {
+		left: 15px;
+		top: 170px;
+		width: 30px;
+		height: 30px;
+		border: 3px solid #e5e5e5;
+		border-radius: 30px;
+		background-color: #EB8F8F;
+	}
+	.package .content h4 {
+		line-height: 20px;
+		font-size: .9em;
+		padding-right: 10px;
+	}
+	.package .content p {
+		margin-top: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 }

@@ -1,4 +1,5 @@
 .opt {
+	z-index: 10;
 	position: fixed;
 	width: 100px;
 	height: 100px;
@@ -89,4 +90,21 @@ h3 {
 	-ms-transform: translate(-425px, -250px);
 	-o-transform: translate(-425px, -250px);
 	transform: translate(-425px, -250px);
+}
+
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+	main{
+		padding-top: 0;
+	}
+	.container{
+		width: 900px;
+	}
+}
+@media screen and (max-width: 767px) {
+	main{
+		padding-top: 0;
+	}
+	.container{
+		width: 500px;
+	}
 }

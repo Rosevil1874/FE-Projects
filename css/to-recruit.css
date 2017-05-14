@@ -10,7 +10,7 @@ h1 {
 /*表单填写*/
 form {
 	position: relative;
-	width: 55%;
+	width: 60%;
 	margin: 50px auto;
 }
 .outer-wrap {
@@ -79,4 +79,48 @@ input[type='text']{
 	color: #fff;
 	background-color: #900;
 	cursor: pointer;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+	form {
+		width: 70%;
+	}
+	label {
+		width: 38%;
+	}
+	input[type='text']{
+		width: 38%;
+	}
+}
+@media screen and (max-width: 767px) {
+	main {
+		padding-top: 0;
+	}
+	form {
+		width: 100%;
+	}
+	.outer-wrap {
+		padding: 50px;
+	}
+	label,
+	input[type='text'] {
+		width: 100%;
+		margin: 0 auto;
+	}
+	label{
+		line-height: 35px;
+		text-align: left;
+	}
+	.demand {
+		margin-left: 10px;
+		font-size: .8em;
+	}
+	.demand-detail {
+		margin-left: 0;
+		padding: 10px;
+	}
+	.agree-wrap label {
+		margin-right: -50px;
+		text-align: center;
+	}
 }

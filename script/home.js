@@ -1,7 +1,7 @@
 $(function () {
 	var $carousel = $('.carousel')		//轮播容器
 		$imgList = $('.img-list')		//图片容器
-		$circles = $('.circles span img')	//指示当前图片索引的小圈圈们
+		$circles = $('.circles span')	//指示当前图片索引的小圈圈们
 		$prev = $('#prev')				//前一页
 		$next = $('#next')				//后一页
 		index = 1			//当前显示图片的索引
@@ -17,6 +17,8 @@ $(function () {
 	// $carousel.css('height', $screen_h)
 	// $imgList.css('height', $screen_h)
 	// $('.img-list img').css('height', $screen_h)
+
+	/* ============================ 焦点图轮播 =================================*/
 	$('.img-list img').css('width', $screen_w)
 	// 动画，水平滑动offset宽度
 	function animate(offset) {
@@ -105,17 +107,25 @@ $(function () {
 		})
 	})
 
+	$carousel.hover(stop, play)
+	play()
+
+/* ============================ 往期精彩点击显示详情 =================================*/
 	$alter.each(function (i) {
-		$(this).click(function () {
-			$('this').attr('src','images/home/about.png')
+		$(this).click(function (e) {
+			var e = e || window.event
+				target = e.target || e.srcElement
+
 			if (flag) {
 				flag = false
+				$(target).attr('src','images/home/item.png')
 				$content.eq(i).animate({
 					'left': '300px',
 					'width': '80px'
 				}, 300)
 			} else {
 				flag = true;
+				$(target).attr('src','images/home/about.png')
 				$content.eq(i).animate({
 					'left': '0px',
 					'width': '380px'
@@ -124,6 +134,4 @@ $(function () {
 		})
 	})
 
-	$carousel.hover(stop, play)
-	play()
 })

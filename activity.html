@@ -12,13 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/activity.css">
 	<script type="text/javascript" src="script/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="script/multiplex.js"></script> <!-- 各页面复用脚本：移动端导航栏/底部计时器 -->
 </head>
 <body>
 	<!-- 导航栏 -->
 	<nav>
 		<img src="images/logo.png">
 		<ul>
-			<ul>
 			<a href="home.html"><li>
 				<img src="icon/home.png">
 				<p>主页</p>
@@ -48,10 +48,11 @@
 			<input type="search" name="search">
 			<img src="icon/search.png">
 		</div>
+		<img src="images/home/icon-item.png" class="click-to-show">
 	</nav>
 	
 	<!-- 活动分类展示 -->
-	<main>
+	<main class="activity">
 		<div class="wrap wrap1">
 			<img src="images/activity/teach.jpg">
 			<div class="desc">
@@ -129,6 +130,5 @@
 			</div>
 			<p class="copyright">© 2017 Charity. All rights reserved | Design by <a href="about.html">咸鱼翻身</a></p>
 		</footer>
-	<script type="text/javascript" src="script/timer.js"></script>
 </body>
 </html>

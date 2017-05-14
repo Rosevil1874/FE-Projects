@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/activity.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<script type="text/javascript" src="script/jquery-3.1.1.min.js"></script> <!-- 必须先引入jQuery，否则其他代码报错 -->
-	<script type="text/javascript" src="script/timer.js"></script> <!-- 底部计时器脚本 -->
+	<script type="text/javascript" src="script/multiplex.js"></script> <!-- 各页面复用脚本：移动端导航栏/底部计时器 -->
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -49,6 +49,7 @@
 			<input type="search" name="search">
 			<img src="icon/search.png">
 		</div>
+		<img src="images/home/icon-item.png" class="click-to-show">
 	</nav>
 
 	<!-- 图片轮播 -->
@@ -118,38 +119,36 @@
 		<!-- 新闻 公益活动 -->
 		<h3 class="line-between">往期精彩</h3>
 		<div class="news clearfix">
-			<div class="half-width newest">
-				<img src="images/home/newest.PNG" alt="融城计划">
-				<div class="newest-detail">
-					<h4>你的微笑，由我守护——融城计划再启航</h4>
-					<p>2017年3月22日上午十点，望城坡街道校地共建签约、授牌仪式在岳麓区望城坡街道办事处顺利举行。湖南大学团委副书记马华华，岳麓区团委书记谈玉璜，望城坡街道党工委副书记、办事处主任张智余，望城坡街道党工委副书记廖科仁，望城坡街道团工委及各社区团支部代表，湖南大学青志协代表，望新小学老师代表以及箭弓山社区、南家塘社区负责人均到场出席了此次会议。</p>
+			<div class="package left">
+				<span><img src="images/home/item.png"></span>
+				<img src="images/home/newest.png" alt="融城计划">
+				<div class="content">
+					<h4>你的微笑，由我守护<br>融城计划再启航</h4>
+					<p>2017年3月22日上午十点，望城坡街道校地共建签约、授牌仪式在岳麓区望城坡街道办事处顺利举行。湖南大学团委副书记，岳麓区团委书记，望城坡街道党工委副书记、办事处主任，望城坡街道党工委副书记，湖南大学青志协代表均到场出席了此次会议。</p>
 				</div>
 			</div>
-			<div class="half-width lately">
-				<div class="package">
-					<span><img src="images/home/item.png"></span>
-					<img src="images/home/lately1.jpg">
-					<div class="content">
-						<h4>湖南大学彩虹助学协会<br>暑期支教</h4>
-						<p>7月中旬，湖南大学彩虹助学协会143名志愿者陆续出发，分赴怀化、郴州、麻阳、凤凰、益阳等市州12个支教点，开始为期15天的暑期支教之旅，为贫困山区的留守儿童带去知识和关爱。</p>
-					</div>
+			<div class="package right">
+				<span><img src="images/home/item.png"></span>
+				<img src="images/home/lately1.jpg">
+				<div class="content">
+					<h4>湖南大学彩虹助学协会<br>暑期支教</h4>
+					<p>7月中旬，湖南大学彩虹助学协会143名志愿者陆续出发，分赴怀化、郴州、麻阳、凤凰、益阳等市州12个支教点，开始为期15天的暑期支教之旅，为贫困山区的留守儿童带去知识和关爱。</p>
 				</div>
-				<div class="package">
-					<span><img src="images/home/item.png"></span>
-					<img src="images/home/lately2.jpg">
-					<div class="content">
-						<h4>情牵夕阳<br>奏响冬日暖歌</h4>
-						<p>2015年12月5日，湖南大学信息科学与工程学院同学在院青协干事的带领下前往长沙市第一福利院探望老人，延续着送温暖行动，给老人们送去了问候与关怀。</p>
-					</div>
+			</div>
+			<div class="package left">
+				<span><img src="images/home/item.png"></span>
+				<img src="images/home/lately2.jpg">
+				<div class="content">
+					<h4>情牵夕阳<br>奏响冬日暖歌</h4>
+					<p>2015年12月5日，湖南大学信息科学与工程学院同学在院青协干事的带领下前往长沙市第一福利院探望老人，延续着送温暖行动，给老人们送去了问候与关怀。</p>
 				</div>
-				<div class="package">
-					<span><img src="images/home/item.png"></span>
-					<img src="images/home/lately3.PNG">
-					<div class="content">
-						<h4>团员少先队员手拉手<br>共筑乡村少年未来梦</h4>
-						<p>十一月十八日下午，幕天筹书活动由大学青年志愿者协会主办，广州幕天公益组织与湖南大学子弟小学合作展开，共同向学校捐助图书的活动。</p>
-					</div>
-					
+			</div>
+			<div class="package right">
+				<span><img src="images/home/item.png"></span>
+				<img src="images/home/lately3.PNG">
+				<div class="content">
+					<h4>团员少先队员手拉手<br>共筑乡村少年未来梦</h4>
+					<p>十一月十八日下午，幕天筹书活动由大学青年志愿者协会主办，广州幕天公益组织与湖南大学子弟小学合作展开，共同向学校捐助图书的活动。</p>
 				</div>
 			</div>
 		</div>
@@ -159,7 +158,7 @@
 		<footer>
 			<p>—— 网站已经运行 ——</p>
 			<!-- 环形计数器 -->
-			<div class="timer">
+			<div class="timer clearfix">
 				<!-- 日 -->
 				<div class="game_time game_time1">
 					<div class="hold">

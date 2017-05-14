@@ -1,3 +1,5 @@
+/*主页公益活动部分和活动页共用样式表*/
+
 main {
 	/*width: 1000px;*/
 }
@@ -54,4 +56,26 @@ main {
 }
 .wrap3 .desc button {
 	background-color: #e3b34f;
+}
+
+/*xs设备：手机*/
+@media screen and (max-width: 767px) {
+	main {
+		padding-top: 0;
+	}
+	.wrap>img,
+	.wrap .desc {
+	  	width: 100%;
+	  	height: 50%;
+	  	box-sizing: border-box;
+	  	overflow: hidden;
+		border: 1px solid #ccc;
+	}
+	.wrap .desc p {
+		display: none;
+	}
+	.wrap .desc img {
+		width: 100%;
+		height: 100%;
+	}
 }
