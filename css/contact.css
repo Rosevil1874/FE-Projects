@@ -133,3 +133,63 @@ textarea {
 	border: 15px solid transparent;
 	border-right-color: #fff;
 }
+
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+	form {
+		width: 60%;
+	}
+	.tips {
+		font-size: .8em;
+	}
+	.tips:after {
+		width: 64%;
+		margin-left: 18%;
+	}
+}
+@media screen and (max-width: 767px) {
+	main {
+		padding-top: 0;
+	}
+	h1 {
+		margin-top: 30px;
+		font-size: 1.5em;
+	}
+	form {
+		width: 75%;
+	}
+	.tips {
+		margin-top: 30px;
+		font-size: .7em;
+		padding: 0 20px;
+	}
+	.tips:after {
+		width: 84%;
+		margin-left: 8%;
+	}
+	.info,
+	.suggestion {
+		width: 100%;
+		float: none;
+	}
+	label {
+		width: 15%;
+		line-height: 30px;
+		margin-right: 5%;
+		font-size: 1rem;
+	}
+	input {
+		width: 80%;
+		height: 30px;
+		line-height: 30px;
+	}
+	.suggestion p {
+		font-size: 1rem;
+	}
+	.map {
+		margin: 30px 0;
+		padding: 30px 0;
+	}
+	.addr {
+		display: none;
+	}
+}

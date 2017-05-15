@@ -52,3 +52,33 @@
 	font-size: .8em;
 	color: #666;
 }
+
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+	.activity-details .wrap {
+		width: 700px;
+	}
+	.activity-details .wrap img {
+		width: 400px;
+		margin: 10px 0 0 150px;
+	}
+}
+@media screen and (max-width: 767px) {
+	main {
+		padding-top: 0;
+	}
+	.activity-details header {
+		height: 100px;
+	}
+	.activity-details .wrap{
+		width: 300px;
+		padding: 20px;
+		margin: -50px auto 0 auto;
+	}
+	.activity-details .wrap img {
+		width: 200px;
+		margin: 10px 0 0 50px;
+	}
+	.activity-details .wrap h2 {
+		font-size: 1em;
+	}
+}

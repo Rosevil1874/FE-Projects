@@ -33,7 +33,7 @@ $(function () {
 			flag = false
 		} 
 		// 2. 初始状态，点击图片放大展示
-		else if (url.indexOf('images/pics') !== -1) {
+		else if (url && url.indexOf('images/pics') !== -1) {
 			var	$mask = $("<div class='mask'></div>")
 				$img = $("<img src=" + url + ">")
 
