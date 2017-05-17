@@ -87,10 +87,12 @@ function getData() {
 		},
 		error:function () {
 			$("#loading").html("加载失败")
+			$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╥﹏╥</p>')
 		},
 		success:function (data) {
 			if ($.isEmptyObject(data)) {
 				$("#loading").html("当前没有举报信息")
+				$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╮(─▽─)╭</p>')
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
@@ -101,24 +103,27 @@ function getData() {
 			}
 
 			// 默认加载第一条详情
-			var li = $("#item-list li").eq(0);
-			if ( $.type(li)  != "undefined" ) {
-				getDetail( li )
+			var list = $("#item-list li");
+			if ( list.length  && list.length > 0 ) {
+				getDetail( $(list.eq(0)).attr('id') )
+			} else {
+				console.log('nothing...');
+				$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╮(─▽─)╭</p>')
 			}
 		}
 	});
 }
 
 // 右侧详细信息联动
-function getDetail(target) {
-	var thisId = targrt.attr("id")
+function getDetail(thisID) {
+	console.log(thisID);
 	$.ajax({
 		type:"POST",
 		url:"../detail.php",
 		dataType:"json",
 		contentType:"application/json;charset=utf-8",
 		data:{
-			gid: thisId
+			gid: thisID
 		},
 		error:function () {
 			alert("商品详情加载失败")
@@ -189,7 +194,7 @@ function searchFor( key ) {
 		dataType:"json",
 		contentType:"application/json;charset=utf-8",
 		data:{
-			searKey:key
+			search:key
 		},
 		beforeSend:function () {	
 			$("#item-list").html("")	
@@ -197,10 +202,12 @@ function searchFor( key ) {
 		},
 		error:function () {
 			$("#loading").html("加载失败")
+			$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╥﹏╥</p>')
 		},
 		success:function (data) {
 			if ($.isEmptyObject(data)) {
 				$("#loading").html("没有匹配的举报信息")
+				$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╮(─▽─)╭</p>')
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
@@ -208,6 +215,15 @@ function searchFor( key ) {
 				});
 				$("#loading").html("")
 				$("#item-list").html(lis)
+			}
+
+			// 默认加载第一条详情
+			var list = $("#item-list li");
+			if ( list.length  && list.length > 0 ) {
+				getDetail( $(list.eq(0)).attr('id') )
+			} else {
+				console.log('nothing...');
+				$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╮(─▽─)╭</p>')
 			}
 		}
 	});
@@ -249,24 +265,23 @@ function IgnoreOrDel(type) {
 
 
 $(function () {
-	
 	// 初始化页面为第一页
 	if ( pages > 0 ) {
 		paging(1)
 	}
 	
 	// 加载左侧列表		    
-	// getData()				
+	getData()				
 	
 	// 点击加载详情
-	$("#item-list").click( function (event) {
-		event = event || window.event
-		var target = event.target || event.srcElement;
-		getDetail( target )
+	$("#item-list li").each( function () {
+		$(this).click(function () {
+			getDetail( $(this).attr('id') )
+		})
 	} );
 
 	// 点击搜索
-	$("#search-btn").click( function () {
+	$(".search-btn").click( function () {
 		var searchText = $("#search-text").val()
 		searchFor( searchText )
 	})
