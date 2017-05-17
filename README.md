@@ -23,27 +23,27 @@
 3. 当前数据交互格式：
 
 一、加载项：传前端：
-　　　1. 左侧列表：
-　　　gid：商品ID（int类型）
-　　　yb_userhead_url：用户头像src（varchar)
-　　　title：商品标题(varchar)
+1. 左侧列表：
+　　　- gid：商品ID（int类型）
+　　　- yb_userhead_url：用户头像src（varchar)
+　　　- title：商品标题(varchar)
 　　　
 　　　2. 右侧商品详情：
-　　　gid：商品ID（int类型）
-　　　release_time：发布日期（xx年xx月xx日）(timestamp)
-　　　yb_userhead_url：用户头像src(varchar)
-　　　sellername：用户昵称(varchar)
-　　　title：商品标题(varchar)
-　　　pic_url：商品图片src(varchar)
-　　　price：商品价格（int类型）
-　　　labelArray：分类(varchar)
-　　　detail：商品详情(varchar)
-　　　bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
+　　　- gid：商品ID（int类型）
+　　　- release_time：发布日期（xx年xx月xx日）(timestamp)
+　　　- yb_userhead_url：用户头像src(varchar)
+　　　- sellername：用户昵称(varchar)
+　　　- title：商品标题(varchar)
+　　　- pic_url：商品图片src(varchar)
+　　　- price：商品价格（int类型）
+　　　- labelArray：分类(varchar)
+　　　- detail：商品详情(varchar)
+　　　- bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
 	　　　
 注：
 	1. 初始化时加载全部商品的ID、用户头像、标题到左侧列表，默认加载第一项详情。
 	2. 点击左侧条目时，传商品ID到后台，后台根据ID检索并返回商品详细信息到前端。
-　　　
+	　　
 二、搜索：
 　　	1. 传后台
 　　　searKey：搜索关键字（string类型）
@@ -77,13 +77,14 @@
 ## 2017/05/17
 bug bug bug
 1. 搜索功能没反应
-	原因：获取搜索按钮错误，导致函数并没有绑定到搜索按钮上，所以点击搜索按钮无法正确使用其功能。
-	解决：正确将函数绑定到搜索按钮上。
-	添加：加载出搜索结果后默认加载第一条详情。
+	- 原因：获取搜索按钮错误，导致函数并没有绑定到搜索按钮上，所以点击搜索按钮无法正确使用其功能。
+	- 解决：正确将函数绑定到搜索按钮上。
+	- 添加：加载出搜索结果后默认加载第一条详情。
 2. getdetail调用的次数和我点击的次数不一样，调用比点击多很多次而且穿进去的都是空值。
-	原因：使用事件委托机制，将点击事件绑定到了每个条目的父元素上，每次点击时获取当前时间target。问题就在于并不是每次点击事件的target都是需要的带有ID属性的li元素，而是经常是li的子元素span【商品title】，导致无法正确传递当前点击商品的ID号给getDetail函数。
-	解决：取消事件委托，依次为每个商品条目(li元素)绑定click事件，将当前ID传给getDetail函数。
+	- 原因：使用事件委托机制，将点击事件绑定到了每个条目的父元素上，每次点击时获取当前时间target。问题就在于并不是每次点击事件的target都是需要的带有ID属性的li元素，而是经常是li的子元素span【商品title】，导致无法正确传递当前点击商品的ID号给getDetail函数。
+	- 解决：取消事件委托，依次为每个商品条目(li元素)绑定click事件，将当前ID传给getDetail函数。
 3. 当左侧列表加载失败或者当前没有被举报商品，时，右侧均显示为初始的布局，用户体验不好。
-	添加：左侧列表加载失败时以及右侧详情加载失败时，右侧显示“哭泣”颜文字；
-		 当前没有被举报商品时以及搜索结果为空时，右侧显示“摊手”颜文字。
+	添加：
+	- 左侧列表加载失败时以及右侧详情加载失败时，右侧显示“哭泣”颜文字；
+	- 当前没有被举报商品时以及搜索结果为空时，右侧显示“摊手”颜文字。
 4. 点过一次获取detail的商品再点回去就获取失败了【这个。。还没懂到底是个什么bug】
