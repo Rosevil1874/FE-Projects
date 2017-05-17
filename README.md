@@ -24,43 +24,42 @@
 
 一、加载项：传前端：
 1. 左侧列表：
-　　　- gid：商品ID（int类型）
-　　　- yb_userhead_url：用户头像src（varchar)
-　　　- title：商品标题(varchar)
-　　　
-　　　2. 右侧商品详情：
-　　　- gid：商品ID（int类型）
-　　　- release_time：发布日期（xx年xx月xx日）(timestamp)
-　　　- yb_userhead_url：用户头像src(varchar)
-　　　- sellername：用户昵称(varchar)
-　　　- title：商品标题(varchar)
-　　　- pic_url：商品图片src(varchar)
-　　　- price：商品价格（int类型）
-　　　- labelArray：分类(varchar)
-　　　- detail：商品详情(varchar)
-　　　- bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
+	- gid：商品ID（int类型）
+	- yb_userhead_url：用户头像src（varchar)
+	- title：商品标题(varchar)
+	　　
+	2. 右侧商品详情：
+	- gid：商品ID（int类型）
+	- release_time：发布日期（xx年xx月xx日）(timestamp)
+	- yb_userhead_url：用户头像src(varchar)
+	- sellername：用户昵称(varchar)
+	- title：商品标题(varchar)
+	- pic_url：商品图片src(varchar)
+	- price：商品价格（int类型）
+	- labelArray：分类(varchar)
+	- detail：商品详情(varchar)
+	- bargin：是否可议价（Boolean类型【1：可议价，0：不可议价】）
 	　　　
 注：
 	1. 初始化时加载全部商品的ID、用户头像、标题到左侧列表，默认加载第一项详情。
 	2. 点击左侧条目时，传商品ID到后台，后台根据ID检索并返回商品详细信息到前端。
 	　　
 二、搜索：
-　　	1. 传后台
-　　　searKey：搜索关键字（string类型）
-　　　2. 传前端
-　　　根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
+	1. 传后台
+	searKey：搜索关键字（string类型）
+	2. 传前端
+	根据关键词按加载项中格式传输左侧列表数据到前端，并默认加载第一条详情。
 
 三、忽略/删除
-　　　1. 传后台
-　　　signal:  "ignore"或"del"（string类型）
-　　　gid: 商品ID（int类型）
-　　　
-　　　a) signal=ignore时，将商品信息从举报列表中移除；
-　　　b) signal=del时，将商品信息同时从举报列表和商品总列表中移除。
-　　　
-　　　2. 传前端--对ignore和del均适用：
-　　　1. 操作成功返回字符串"success"；
-　　　2. 操作失败返回字符串"fail"。
+	1. 传后台
+	+ signal:  "ignore"或"del"（string类型）
+		+ signal=ignore时，将商品信息从举报列表中移除；
+		+ signal=del时，将商品信息同时从举报列表和商品总列表中移除。
+	+ gid: 商品ID（int类型）
+	　　　
+	2. 传前端--对ignore和del均适用：
+	+ 操作成功返回字符串"success"；
+	+ 操作失败返回字符串"fail"。
 　　　
 ## 2017/03/22
 1. 可议价按钮还没商量好
