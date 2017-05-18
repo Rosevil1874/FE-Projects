@@ -77,10 +77,13 @@ function paging(currentPage) {
 function getData() {
 	$.ajax({
 		type:"POST",
-		url:"../list.php",
+		url:"./MyController",
 		dataType:"json",
-		contentType:"application/json;charset=utf-8",
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		// loading图标
+		data:{
+			action: "getdata"
+		},
 		beforeSend:function () {
 			$("#item-list").html("")			
 			$("#loading").html("<img src='images/loading.gif'>")
@@ -96,7 +99,7 @@ function getData() {
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
-					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + " alt='用户头像'><span>" + item.title + "</span></li>"
+					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + "' alt='用户头像'><span>" + item.title + "</span></li>"
 				});
 				$("#loading").html("")
 				$("#item-list").html(lis)
@@ -110,20 +113,29 @@ function getData() {
 				console.log('nothing...');
 				$('form:eq(0)').html('<p style="text-align:center; margin-top:100px;">╮(─▽─)╭</p>')
 			}
+			
+			// 点击加载详情
+			$("#item-list li").each( function () {
+				$(this).click(function () {
+					getDetail( $(this).attr('id') )
+				})
+			} );
+
 		}
 	});
 }
 
 // 右侧详细信息联动
 function getDetail(thisID) {
-	console.log(thisID);
+	//console.log(thisID);
 	$.ajax({
 		type:"POST",
-		url:"../detail.php",
+		url:"./MyController",
 		dataType:"json",
-		contentType:"application/json;charset=utf-8",
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		data:{
-			gid: thisID
+			gid: thisID,
+			action: "getdetail"
 		},
 		error:function () {
 			alert("商品详情加载失败")
@@ -186,15 +198,26 @@ function getDetail(thisID) {
 	});
 }
 
+// 触发搜索操作
+function searchTrigger() {
+	var searchText = $("#search-text").val()
+	searchText = searchText.replace(/\s/g, '')
+	if (searchText.length > 0) {
+		searchFor( searchText )
+	}
+}
+
 // 加载搜索匹配内容
 function searchFor( key ) {
+	//console.log(key)
 	$.ajax({
 		type:"POST",
-		url:"",
+		url:"./MyController",
 		dataType:"json",
-		contentType:"application/json;charset=utf-8",
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		data:{
-			search:key
+			searchValue:key,
+			action: "search"
 		},
 		beforeSend:function () {	
 			$("#item-list").html("")	
@@ -244,11 +267,12 @@ function IgnoreOrDel(type) {
 	
 	$.ajax({
 		type:"POST",
-		url:"",
+		url:"./MyController",
 		dataType:"json",
-		contentType:"application/json;charset=utf-8",
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		data:{
-			signal:type
+			signal:type,
+			action:"iod"
 		},
 		error:function () {
 			alert("操作失败")
@@ -272,18 +296,16 @@ $(function () {
 	
 	// 加载左侧列表		    
 	getData()				
-	
-	// 点击加载详情
-	$("#item-list li").each( function () {
-		$(this).click(function () {
-			getDetail( $(this).attr('id') )
-		})
-	} );
-
+		
 	// 点击搜索
 	$(".search-btn").click( function () {
-		var searchText = $("#search-text").val()
-		searchFor( searchText )
+		searchTrigger()
+	})
+	// enter键搜索
+	$(document).keypress(function (event) {
+		if (event.keyCode === 13) {
+			searchTrigger()
+		}
 	})
 	
 	//搜索框删除文本
