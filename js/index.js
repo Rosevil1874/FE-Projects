@@ -1,8 +1,9 @@
-var	$pageNum = $("#page-num")
-	$lis = $("#item-list li")
-	len = $lis.length || 0
-	pages = 0					//总页数
-	pageSize = 9				//每页8项条目
+function countPage(pageNow){
+	var	$lis = $("#item-list li")
+		len = $lis.length || 0
+		pageNow = pageNow || 1		//若未传参，则初始化到第一页
+		pages = 0					//总页数
+		pageSize = 9				//每页9项条目
 
 	// 计算总页数
 	if (len%pageSize == 0) {
@@ -11,9 +12,18 @@ var	$pageNum = $("#page-num")
 		pages = Math.floor(len/pageSize) + 1
 	}
 	
+	// 按需初始化页面
+	if ( pages > 0 ){
+		paging(pageNow)
+	}
+}
+
 // 翻页函数, currentPage-当前页码， pageSize-每页条目数
 function paging(currentPage) {
 	var curr = currentPage
+		$lis = $("#item-list li")
+		$pageNum = $("#page-num")
+		pageSize = 9				//每页9项条目
 
 	// start-第一行显示的条目， end-最后一行显示的条目
 	var start = (curr - 1) * pageSize + 1
@@ -104,6 +114,9 @@ function getData() {
 				$("#loading").html("")
 				$("#item-list").html(lis)
 			}
+			
+			//显示分页
+			countPage()
 
 			// 默认加载第一条详情
 			var list = $("#item-list li");
@@ -170,7 +183,7 @@ function getDetail(thisID) {
 			var canvas = $(".good-img")[0]
 			var	ctx = canvas.getContext("2d")
 			var	img = new Image()
-			img.src = "images/ice-bear.jpg"
+			img.src = data.pic_url
 			img.onload = function () {
 				var w = img.width
 				var h = img.height
@@ -234,12 +247,15 @@ function searchFor( key ) {
 			} else {
 				var lis = "";
 				$.each( data, function (index, item) {
-					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + " alt='用户头像'><span>" + item.title + "</span></li>"
+					lis += "<li id='" + item.gid + "'><img src='" + item.yb_userhead_url + "' alt='用户头像'><span>" + item.title + "</span></li>"
 				});
 				$("#loading").html("")
 				$("#item-list").html(lis)
 			}
 
+			//显示分页
+			countPage()
+			
 			// 默认加载第一条详情
 			var list = $("#item-list li");
 			if ( list.length  && list.length > 0 ) {
@@ -263,25 +279,53 @@ function clearInput() {
 
 // 忽略或删除被举报商品
 function IgnoreOrDel(type) {
-	var $ignoreId = $("#good-id").html()
+	var ignoreId = $("#good-id").html()
+	console.log(ignoreId)
 	
 	$.ajax({
 		type:"POST",
 		url:"./MyController",
-		dataType:"json",
+		dataType:"text",
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		data:{
+			gid:ignoreId,
 			signal:type,
 			action:"iod"
 		},
 		error:function () {
-			alert("操作失败")
+			alert("操作失败-error")
 		},
 		success:function (data) {
 			if (data == "success") {
+				var $list_wrap = $("#item-list")
+				    $list =  $("#item-list li")
+				    len = $list.length
+				    
+				for(var i = 0; i < len; i++){
+					(function closer(idx) {
+						if($list.eq(idx).attr('id') == ignoreId){
+							//删除此条目
+							$list_wrap[0].removeChild($list.eq(idx)[0])
+							// 计算当前页数
+							var pageSize = 9
+							if ((idx+1)%pageSize == 0) {
+								var pageNow = (idx+1)/pageSize
+							} else {
+								var pageNow = Math.floor((idx+1)/pageSize) + 1
+							}
+							//显示分页
+							console.log(pageNow)
+							countPage(pageNow)
+							//如果删除第一条，重新加载新的第一条详情
+							var $newList = $("#item-list li")
+							getDetail($newList.eq(0).attr('id'))
+							return
+						}
+					})(i)
+				}
 				alert("操作成功")
 			} else {
-				alert("操作失败")
+				alert("操作失败-validData")
 			}
 		}
 	});
@@ -289,11 +333,6 @@ function IgnoreOrDel(type) {
 
 
 $(function () {
-	// 初始化页面为第一页
-	if ( pages > 0 ) {
-		paging(1)
-	}
-	
 	// 加载左侧列表		    
 	getData()				
 		
