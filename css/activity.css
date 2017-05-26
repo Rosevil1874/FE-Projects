@@ -58,10 +58,18 @@ main {
 	background-color: #e3b34f;
 }
 
+/*sm设备：小屏幕-平板*/
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	.wrap .desc img {
+		width: 100%;
+		height: auto;
+	}
+}
+
 /*xs设备：手机*/
 @media screen and (max-width: 767px) {
 	main {
-		padding-top: 0;
+		padding-top: 65px;
 	}
 	.wrap>img,
 	.wrap .desc {

@@ -94,7 +94,7 @@ input[type='text']{
 }
 @media screen and (max-width: 767px) {
 	main {
-		padding-top: 0;
+		padding-top: 65px;
 	}
 	form {
 		width: 100%;

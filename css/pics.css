@@ -36,12 +36,13 @@
     margin: 20px;
     border: 5px solid #fff;
     box-shadow: 5px 5px 15px #ccc;
-    cursor: crosshair;
 }
 .container .img-wrap img {
 	width: 100%;
 	height: 250px;
 	vertical-align: middle;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
 }
 .container .img-wrap .describe {
 	position: absolute;
@@ -94,7 +95,7 @@ h3 {
 
 @media screen and (min-width: 767px) and (max-width: 1200px) {
 	main{
-		padding-top: 0;
+		padding-top: 65px;
 	}
 	.container{
 		width: 900px;
@@ -106,5 +107,8 @@ h3 {
 	}
 	.container{
 		width: 500px;
+	}
+	.opt {
+		display: none;
 	}
 }

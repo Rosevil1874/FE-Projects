@@ -34,7 +34,7 @@ $(function () {
 		} 
 		// 2. 初始状态，点击图片放大展示
 		else if (url && url.indexOf('images/pics') !== -1) {
-			var	$mask = $("<div class='mask'></div>")
+			var	$mask = $("<div class='mask' style='cursor: zoom-out'></div>")
 				$img = $("<img src=" + url + ">")
 
 			// 添加图片

@@ -472,11 +472,15 @@ a {
     text-decoration:none;
     cursor: pointer;
 }
-nav>img {
+nav>a {
     float: left;
     width: 20%;
     height: auto;
     margin-top: 20px;
+}
+nav>a img {
+  width: 100%;
+  height: 100%;
 }
 nav li {
     float: left;
@@ -492,10 +496,33 @@ nav li:hover{
 nav li.active {
     background-color: #777;
 }
-nav li img {
+nav li .nav-icon {
     width: 25px;
     height: 25px;
+    margin: 0 auto;
+    background:url(../icon/icons.png) no-repeat;
+    background-size: 600% 100%;  /* 雪碧图宽度为6张小图片的宽度，高度为一张小图片高度*/
 }
+/*为什么除以8： 每个小icon的宽高为200px，容器为25px,8倍的关系*/
+nav li .nav-icon-home {
+  background-position: 1px 0;
+}
+nav li .nav-icon-activity {
+  background-position: calc(-800px/8 + 0px) 0;
+}
+nav li .nav-icon-pics {
+  background-position: calc(-200px/8) 0;
+}
+nav li .nav-icon-recruit {
+  background-position: calc(-400px/8 ) 0;
+}
+nav li .nav-icon-about {
+  background-position: calc(-600px/8) 0;
+}
+nav li .nav-icon-contact {
+  background-position: calc(-1000px/8) 0;
+}
+
 nav li p {
     margin-top:5px;
 }
@@ -645,6 +672,7 @@ footer {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  font-size: .8rem;
 }
 .copyright a {
     box-sizing: border-box;
@@ -776,10 +804,10 @@ footer {
 @media screen and (max-width: 767px) {
   /*导航栏*/
   nav {
-    position: relative;
+    /*position: relative;*/
     height: 65px;
   }
-  nav>img {
+  nav>a {
     width: 40%;
     height: auto;
   }
@@ -815,7 +843,7 @@ footer {
   nav ul p {
     margin: 0;
   }
-  nav ul img{
+  nav ul div{
     display: none;
   }
   .carousel {

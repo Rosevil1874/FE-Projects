@@ -12,7 +12,8 @@ $(function () {
 		$screen_h = $(document.body).height()	//屏幕高度
 		$alter = $('.package span')		//往期活动小圆按钮
 		flag = false					//小圆按钮是否被点击过
-		$content = $('.package .content')//小圆按钮控制的文字描述
+		$content = $('.package .content')//小圆按钮控制的文字描述容器
+		$details = $('.package .content p')//小圆按钮控制的文字描述
 
 	// $carousel.css('height', $screen_h)
 	// $imgList.css('height', $screen_h)
@@ -119,6 +120,7 @@ $(function () {
 			if (flag) {
 				flag = false
 				$(target).attr('src','images/home/item.png')
+				$details.eq(i).css('display','none')
 				$content.eq(i).animate({
 					'left': '300px',
 					'width': '80px'
@@ -126,6 +128,7 @@ $(function () {
 			} else {
 				flag = true;
 				$(target).attr('src','images/home/about.png')
+				$details.eq(i).css('display','block')
 				$content.eq(i).animate({
 					'left': '0px',
 					'width': '380px'
