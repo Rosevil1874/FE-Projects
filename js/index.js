@@ -151,7 +151,7 @@ function getDetail(thisID) {
 			action: "getdetail"
 		},
 		error:function () {
-			alert("商品详情加载失败")
+			status('商品详情加载失败(╥╯^╰╥)')
 		},
 		success:function (data) {
 			$("#good-id").html(data.gid)//
@@ -293,7 +293,7 @@ function IgnoreOrDel(type) {
 			action:"iod"
 		},
 		error:function () {
-			alert("操作失败-error")
+			status('操作失败(╥╯^╰╥)')
 		},
 		success:function (data) {
 			if (data == "success") {
@@ -323,19 +323,34 @@ function IgnoreOrDel(type) {
 						}
 					})(i)
 				}
-				alert("操作成功")
+				status('操作成功(๑╹◡╹)ﾉ"""')
 			} else {
-				alert("操作失败-validData")
+				status('操作失败(╥╯^╰╥)')
 			}
 		}
 	});
 }
 
+// 提示用户操作结果
+function status(msg) {
+	var $status = $('<div class="status"></div>')		
+	$status.text(msg)
+	$(document.body).append($status)
+	$status.animate({height: "120px"}, 500)
+	var timer = setTimeout(function () {
+		$status.animate({height: "0px"}, 500)
+		var timer2 = setTimeout(function () {
+			$status.remove()
+			clearTimeout(timer2)
+		}, 500);
+		clearTimeout(timer)
+	}, 1500);
+}
 
 $(function () {
 	// 加载左侧列表		    
-	getData()				
-		
+	getData()	
+	
 	// 点击搜索
 	$(".search-btn").click( function () {
 		searchTrigger()
