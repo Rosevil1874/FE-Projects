@@ -119,7 +119,7 @@ $(function () {
 
 			if (flag) {
 				flag = false
-				$(target).attr('src','images/home/item.png')
+				$(target).attr('src','../images/home/item.png')
 				$details.eq(i).css('display','none')
 				$content.eq(i).animate({
 					'left': '300px',
@@ -127,7 +127,7 @@ $(function () {
 				}, 300)
 			} else {
 				flag = true;
-				$(target).attr('src','images/home/about.png')
+				$(target).attr('src','../images/home/about.png')
 				$details.eq(i).css('display','block')
 				$content.eq(i).animate({
 					'left': '0px',
