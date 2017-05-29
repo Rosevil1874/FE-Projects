@@ -8,47 +8,48 @@
 	<meta name="keywords" content="social welfare">
 	<meta name="author" content="咸鱼翻身">
 	<title>关于我们</title>
-	<link rel="icon" type="image/x-icon" href="images/home/title.ico">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/about.css">
-	<script type="text/javascript" src="script/jquery-3.1.1.min.js"></script> 
-	<script type="text/javascript" src="script/timer.js"></script>
-	<script type="text/javascript" src="script/about.js"></script>
+	<link rel="icon" type="image/x-icon" href="../images/home/title.ico">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/about.css">
+	<script type="text/javascript" src="../script/jquery-3.1.1.min.js"></script> 
+	<script type="text/javascript" src="../script/multiplex.js"></script> <!-- 各页面复用脚本：移动端导航栏/底部计时器 -->
+	<script type="text/javascript" src="../script/about.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->
 	<nav>
-		<img src="images/logo.png">
+		<a href="HOME.html"><img src="../images/logo.png"></a>
 		<ul>
 			<a href="home.html"><li>
-				<img src="icon/home.png">
+				<div class="nav-icon nav-icon-home"></div>
 				<p>主页</p>
 			</li></a>
 			<a href="activity.html"><li>
-				<img src="icon/activity.png">
+				<div class="nav-icon nav-icon-activity"></div>
 				<p>活动</p>
 			</li></a>
 			<a href="pics.html"><li>
-				<img src="icon/pics.png">
+				<div class="nav-icon nav-icon-pics"></div>
 				<p>照片</p>
 			</li></a>
 			<a href="recruit.html"><li>
-				<img src="icon/recruit.png">
+				<div class="nav-icon nav-icon-recruit"></div>
 				<p>招募</p>
 			</li></a>
 			<a href="about.html"><li class="active">
-				<img src="icon/about.png">
+				<div class="nav-icon nav-icon-about"></div>
 				<p>关于我们</p>
 			</li></a>
 			<a href="contact.html"><li>
-				<img src="icon/contact.png">
+				<div class="nav-icon nav-icon-contact"></div>
 				<p>联系我们</p>
 			</li></a>
 		</ul>
 		<div class="search-box">
 			<input type="search" name="search">
-			<img src="icon/search.png">
+			<img src="../icon/search.png">
 		</div>
+		<img src="../images/home/icon-item.png" class="click-to-show">
 	</nav>
 
 	<!-- 开发者信息 -->
@@ -61,22 +62,22 @@
 		        <div class="ag-content-customer-ele">
 		            <div class="ag-content-customer-ele-shadow"></div>
 		            <span>Rosevil</span>
-		            <img src="images/about/rosevil_c.png" style="left:65px;" data-hover="57" data-normal="65" />
+		            <img src="../images/about/rosevil_c.png" style="left:65px;" data-hover="57" data-normal="65" />
 		        </div>
 		        <div class="ag-content-customer-ele">
 		            <div class="ag-content-customer-ele-shadow"></div>
 		            <span>闻香识</span>
-		            <img src="images/about/smell_c.png" style="left:96px;" data-hover="88" data-normal="96" />
+		            <img src="../images/about/smell_c.png" style="left:96px;" data-hover="88" data-normal="96" />
 		        </div>
 		        <div class="ag-content-customer-ele">
 		            <div class="ag-content-customer-ele-shadow"></div>
 		            <span>咸鱼之王</span>
-		            <img src="images/about/fish_c.png" style="left:83px;" data-hover="75" data-normal="83" />
+		            <img src="../images/about/fish_c.png" style="left:83px;" data-hover="75" data-normal="83" />
 		        </div>
 		        <div class="ag-content-customer-ele">
 		            <div class="ag-content-customer-ele-shadow"></div>
 		            <span>goi</span>
-		            <img src="images/about/goi_c.png" style="left:56px;" data-hover="48" data-normal="56" />
+		            <img src="../images/about/goi_c.png" style="left:56px;" data-hover="48" data-normal="56" />
 		        </div>
 		        <div class="ag-content-customer-ele-detail">
 		            <ul>
@@ -87,34 +88,34 @@
 		            </ul>
 		            <div class="ag-content-customer-ele-detail-display">
 		                <div class="ag-content-customer-ele-detail-display-left">
-		                    <img src="images/about/rosevil_c.png" />
+		                    <img src="../images/about/rosevil_c.png" />
 		                </div>
 		                <div class="ag-content-customer-ele-detail-display-right">
-		                    <span style="top:30px; right:0px;"><img src="images/about/rosevil.png" /></span>
+		                    <span style="top:30px; right:0px;"><img src="../images/about/rosevil.png" /></span>
 		                </div>
 		            </div>
 		            <div class="ag-content-customer-ele-detail-display">
 		                <div class="ag-content-customer-ele-detail-display-left">
-		                    <img src="images/about/smell_c.png" />
+		                    <img src="../images/about/smell_c.png" />
 		                </div>
 		                <div class="ag-content-customer-ele-detail-display-right">
-		                    <span style="top:27px; left:0px; text-align:right;"><img src="images/about/smell.png" /></span>
+		                    <span style="top:27px; left:0px; text-align:right;"><img src="../images/about/smell.png" /></span>
 		                </div>
 		            </div>
 		            <div class="ag-content-customer-ele-detail-display">
 		                <div class="ag-content-customer-ele-detail-display-left">
-		                    <img src="images/about/fish_c.png" />
+		                    <img src="../images/about/fish_c.png" />
 		                </div>
 		                <div class="ag-content-customer-ele-detail-display-right">
-		                    <span style="top:46px; left:10px; text-align:right;"><img src="images/about/fish.png" /></span>
+		                    <span style="top:46px; left:10px; text-align:right;"><img src="../images/about/fish.png" /></span>
 		                </div>
 		            </div>
 		            <div class="ag-content-customer-ele-detail-display">
 		                <div class="ag-content-customer-ele-detail-display-left">
-		                    <img src="images/about/goi_c.png" />
+		                    <img src="../images/about/goi_c.png" />
 		                </div>
 		                <div class="ag-content-customer-ele-detail-display-right">
-		                    <span style="top:30px; right:20px;"><img src="images/about/goi.png" /></span>
+		                    <span style="top:30px; right:20px;"><img src="../images/about/goi.png" /></span>
 		                </div>
 		            </div>
 		            <div class="ag-content-customer-ele-detail-return"><span><</span>back to</div>
@@ -177,6 +178,6 @@
 		<p class="copyright">© 2017 Charity. All rights reserved | Design by <a href="about.html">咸鱼翻身</a></p>
 	</footer>
 
-<script type="text/javascript" src="script/about.js"></script>
+<script type="text/javascript" src="../script/about.js"></script>
 </body>
 </html>

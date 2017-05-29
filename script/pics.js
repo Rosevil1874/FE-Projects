@@ -13,7 +13,7 @@ $(function () {
 				$img = $(document.createElement('img'))
 				$describe = $("<div class='describe'><h3>支  教</h3><p>教育是人类永远的话题</p><p>作为一名大学生，支教无疑是一个非常棒的选择</p></div>")
 
-			$img.attr('src', 'images/pics/'+ (i+1) + '.jpg')
+			$img.attr('src', '../images/pics/'+ (i+1) + '.jpg')
 			$wrap.append($img)
 			$wrap.append($describe)
 			container.append($wrap)
