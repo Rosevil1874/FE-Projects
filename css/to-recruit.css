@@ -59,7 +59,7 @@ input[type='text']{
 	font-weight: bold;
 }
 #agree {
-	margin-right: -50px;
+	margin-right: -70px;
 	margin-bottom: 150px;
 }
 #submit {
@@ -80,6 +80,9 @@ input[type='text']{
 	background-color: #900;
 	cursor: pointer;
 }
+#submit:hover {
+	background-color: #600;
+}
 
 @media screen and (min-width: 767px) and (max-width: 1200px) {
 	form {
@@ -90,6 +93,9 @@ input[type='text']{
 	}
 	input[type='text']{
 		width: 38%;
+	}
+	#agree {
+		margin-right: -60px;
 	}
 }
 @media screen and (max-width: 767px) {

@@ -67,7 +67,27 @@ function dateDif(startdate){
 	$(".game_time4 .num").html(secondsRound);
 }
 
+// 单选框选中与取消逻辑
+function radio() {
+	var flag = false			//默认未选中
+	var $radioBox = $('#agree')
+
+	$radioBox.click(function () {
+		if (flag == false) {
+			flag = true
+			$radioBox[0].checked=true
+		} else {
+			flag = false
+			$radioBox[0].checked=false
+		}
+	})
+}
+
 $(function () {
+
+	// 招募页面单选框逻辑
+	radio()
+
 	// 打开底部计时器
 	startdate = new Date(2017,1,1)
 	run(startdate);

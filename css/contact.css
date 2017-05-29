@@ -83,6 +83,15 @@ textarea {
 	font-size: 1.2rem;
 	color: #fff;
 	background-color: #900;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+#submit:hover {
+	background-color: #700;
+	border: 1px solid #900;
+	width: 250px;
 }
 .submit {
 	float: left;
@@ -100,6 +109,7 @@ textarea {
 	background-color: #333;
 }
 .addr {
+	opacity: 0;
 	z-index: 1;
 	position: absolute;
 	top: 57%;
@@ -111,6 +121,12 @@ textarea {
 	border-radius: 5px;
 	border-top-left-radius: 0;
 	background-color: #fff;
+	-webkit-transition: all .8s;
+	-o-transition: all .8s;
+	transition: all .8s;
+}
+.map:hover>.addr {
+	opacity: 1;
 }
 /*方框左边的小三角*/
 .addr:before,

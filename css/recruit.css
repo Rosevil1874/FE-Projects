@@ -26,6 +26,13 @@ body {
 	background-color: #33AED5;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.describe  button:hover {
+	background-color: #197C93;
 }
 #more {
 	margin-top: -50px;
@@ -40,6 +47,13 @@ body {
 	text-align: center;
 	color: #900;
 	background-color: #fff;
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+#to-recruit:hover {
+	font-size: 1.7em;
+	letter-spacing: 5px;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1200px) {
