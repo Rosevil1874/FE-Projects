@@ -2,9 +2,145 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>paging</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>桶桶</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
+	<main>
+		<!-- 图示垃圾箱当前容纳垃圾百分比 -->
+		<section id="status"></section>
+		
+		<!-- 详细数据 -->
+		<section id="data">
+			<ul class="clearfix">
+				<li><span class="type">垃圾桶编号</span><span class="detial">02</span></li>
+				<li><span class="type">所在位置</span><span class="detial">爱晚亭</span></li>
+				<li><span class="type">垃圾高度</span><span class="detial">100%</span></li>
+				<li><span class="type">压力值</span><span class="detial">50N</span></li>
+				<li><span class="type">温度</span><span class="detial">27℃</span></li>
+				<li><span class="type">清理时间</span><span class="detial">2017/06/29 15:37</span></li>
+			</ul>
+			<p id="needClean">需要清理</p>
+		</section>
+	</main>
+
+<!-- ECharts单文件引入 -->
+<script type="text/javascript" src="js/echarts.js"></script>
+<!-- 为模块加载器配置echarts和所需图表的路径 -->
+<script type="text/javascript">
+require.config({
+	// 路径配置
+	paths:{
+		echarts:'http://echarts.baidu.com/build/dist'
+	}
+})
+
+// 使用
+require(
+	[
+		'echarts',
+		'echarts/chart/funnel'
+	],
+	function (ec) {
+		// 基于准备好的DOM5，初始化echarts图表
+		var myChart = ec.init(document.getElementById('status'))
+
+		var option={
+			color:[
+				'rgba(255, 69, 0, 0.5)',
+				'rgba(255, 150, 0, 0.5)',
+				'rgba(255, 200, 0, 0.5)',
+				'rgba(155, 200, 50, 0.5)',
+				'rgba(55, 200, 100, 0.5)'
+			],
+			title:{
+				text:'垃圾桶容纳状态'
+			},
+			tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+			toolbox: {
+		        show : true,
+		        orient: 'vertical',
+        		top: 'center',
+		        feature : {
+		            mark : {show: false},
+		            dataView : {show: true, readOnly: false},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    legend: {
+		    	orient: 'vertical',
+		    	x: 'left',
+	            y: 'bottom',
+	            data : ['全满急需处理','待处理','接近待处理','正常','空闲']
+	        },
+	        calculable : true,
+            series : [
+                {
+                    name:'状态',
+                    type:'funnel',
+                    x: '10%',
+                    // y:60,
+                    // y2:60,
+                    // width: '80%',
+                    // min:0,
+                    // max:100,
+                    minSize:'40%',
+                    maxSize:'100%',
+                    sort:'descending',
+                    gap:10,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                            	shoW:true,
+                            	position:'inside'
+                                // formatter: '{b}状态'
+                            },
+                            labelLine: {
+                                show : false,
+                                length:10,
+                                lineStyle:{
+                                	width:1,
+                                	type:'solid'
+                                }
+                            }
+                        },
+                        emphasis: {
+                        	borderColor:'yellow',
+                        	borderWidth:3,
+                            label: {
+                            	show:true,
+                                // position:'inside',
+                                formatter: '{b}状态 : {c}%',
+                                textStyle:{
+                                	fontSize:15
+                                }
+                            },
+                            labelLine:{
+                            	show:true
+                            }
+                        }
+                    },
+                    data:[
+                        {value:100, name:'全满急需处理'},
+                        {value:80, name:'待处理'},
+                        {value:60, name:'接近待处理'},
+                        {value:40, name:'正常'},
+                        {value:20, name:'空闲'}
+                    ]
+                }
+        	]
+		}
+
+		// 为echarts对象加载数据
+		myChart.setOption(option)
+	}
+)
+</script>
 </body>
 </html>
