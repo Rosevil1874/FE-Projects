@@ -1,0 +1,246 @@
+html,body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100vh;
+	font-size: 16px;
+}
+body {
+	position: relative;
+	background: -webkit-linear-gradient(top, #58C8B8 0%, #fff 100%);
+	background: linear-gradient(top, #58C8B8 0%, #fff 100%);
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+li {
+	list-style: none;
+}
+.clearfix:after {
+	content: '';
+	height: 0;
+	line-height: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+}
+.clearfix {
+	*zoom:1;
+}
+
+/* ============================= 地图 ====================================*/
+#mapholder{
+	height: 100vh;
+	width: 100%;
+}
+#legend {
+	font-family: Arial, sans-serif;
+	background-color: #fff;
+	padding: 10px;
+	margin: 20px;
+	border: 3px solid #000;
+	text-align: left;
+}
+#legend h3 {
+	margin-top: 0;
+	text-align: center;
+}
+#legend img {
+	margin-top: 10px;
+	vertical-align: middle;
+}
+
+@media screen and ( max-width: 767px ){
+	#legend {
+		margin: 5px;
+	}
+	#legend img {
+		width: 20px;
+		height: 20px;
+		margin-top: 5px;
+		vertical-align: middle;
+	}
+}
+
+/* ======================================== paging子页 ==================================== */
+main {
+	width: 100%;
+	height: 100vh;
+	background: #eef;
+}
+#status {
+	width: 50%;
+	height: 100vh;
+	float: left;
+	padding: 50px;
+	box-sizing: border-box;
+}
+#data {
+	width: 50%;
+	height: 100vh;
+	float: left;
+	padding: 50px;
+	box-sizing: border-box;
+	font-size: 1.3em;
+	color: #eef;
+	background-color: #424B62;
+	overflow: hidden;
+}
+#data ul {
+	width: 75%;
+	padding: 50px;
+	margin: 50px auto;
+	height: auto;
+	background-color: rgba(255, 255, 255, .2);
+	/*box-shadow: 0px 0px 50px #ccc	;*/
+}
+#data li {
+	width: 100%;
+	line-height: 45px;
+}
+#data .type {
+	width: 50%;
+	float: left;
+}
+#data .detial {
+	width: 50%;
+	float: right;
+}
+.label {
+	display: block;
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50px;
+	color: #424B62;
+	background-color: #eef;
+}
+#needClean {
+	float: left;
+	margin-left: 20%;
+}
+#tempWarning {
+	float: right;
+	margin-right: 20%;
+}
+
+/*================================= login ======================================*/
+#slogan {
+	position: absolute;
+	width: 600px;
+	height: 200px;
+	top: 10px;
+	left: 50%;
+	margin-left: -300px;
+	font-size: 5rem;
+	color: #D3EAE9;
+	font-style: italic;
+	font-weight: bolder;
+	-webkit-text-shadow: #5F8393 10px 10px 30px;
+	text-shadow: #5F8393 10px 10px 30px;
+	letter-spacing: 3px;
+}
+form {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 500px;
+	height: 300px;
+	margin-left: -250px;
+	margin-top: -150px;
+	padding-top: 50px;
+	background-color: #F0EAEA;
+	border-radius: 10px;
+	-webkit-box-shadow: #5F8393 0px 0px 30px;
+	box-shadow: #5F8393 0px 0px 30px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.wrap {
+	width: 400px;
+	margin: 20px auto;
+	text-align: right;
+}
+.wrap input {
+	width: 300px;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 5px;
+	margin-left: 20px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+}
+.wrap input:focus {
+	-webkit-box-shadow: #7BDFDF 0px 0px 10px;
+	box-shadow: #7BDFDF 0px 0px 10px;
+}
+label {
+	font-size: 1.3rem;
+	color: #81AF8D;
+}
+#submit-btn {
+	width: 150px;
+	height: 45px;
+	margin: 10px auto;
+	background-color: #81AF8D;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 1.3rem;
+	outline: none;
+	cursor: pointer;
+}
+#submit-btn:visited,
+#submit-btn:hover,
+#submit-btn:active {
+	background-color: #467955;
+}
+
+/*================================= manager ======================================*/
+nav {
+	width: 100%;
+	height: 65px;
+	line-height: 65px;
+	text-align: center;
+	font-size: 1.35rem;
+	color: #F5F2F2;
+	background-color: #9AA7AD;
+}
+#logo {
+	width: 40px;
+	height: 40px;
+	margin-left: 10px;
+	transform: translateY(10px);
+}
+#manegeMain {
+	background-color: #F0EAEA;
+	width: 90%;
+	height: auto;
+	margin: 30px auto;
+}
+table {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+tr {
+	height: 45px;
+	line-height: 45px;
+}
+th {
+	background-color: #A5C8C3;
+}
+.delet {
+	width: 25px;
+	height: 25px;
+	transform: translateY(3px);
+	cursor: pointer;
+}
+#loading{
+    line-height: 50px;
+    text-align: center;
+    color: #666;
+}

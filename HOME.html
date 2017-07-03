@@ -5,16 +5,17 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>辣鸡全家桶</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<div id="demo"></div>
+	<div id="prompt"></div>
 	<!-- <button onclick="getLocation()">获取地理位置</button> -->
 	<div id="mapholder"></div>
 	<div id="legend"><h3>legend</h3></div>
 
 <script type="text/javascript">
 	var mapholder = document.getElementById('mapholder')
+	var prompt = document.getElementById('prompt')
 
 	// 获取当前位置
 	function getLocation() {
@@ -56,6 +57,10 @@
 			timeout:{
 				name:'Timeout',
 				icon:'images/timeout.png'
+			},
+			hot:{
+				name:"Hot",
+				icon:"images/hot.png"
 			}
 		}
 
@@ -70,14 +75,14 @@
 			position: new google.maps.LatLng(28.17843076567516,112.94081237997058),
 			type: 'normal'
 		}, {
-			position: new google.maps.LatLng(28.18117333828266,112.9418959924126),
-			type: 'normal'
-		}, {
 			position: new google.maps.LatLng(28.182506770586404, 112.9389777490044),
 			type: 'normal'
 		}, {
 			position: new google.maps.LatLng(28.179210601368094, 112.94449791667168),
 			type: 'normal'
+		}, {
+			position: new google.maps.LatLng(28.18117333828266,112.9418959924126),
+			type: 'hot'
 		}, {
 			position: new google.maps.LatLng(28.180691028882528, 112.93882754529956),
 			type: 'full'
@@ -96,16 +101,18 @@
 		}]
 
 		// 添加marker函数
-		var markerCluster
+		// var markerCluster
 		function addMarker(feature) {
 			var marker = new google.maps.Marker({
 				position: feature.position,
 				icon: icons[feature.type].icon,
 				map: map
 			})
-			markerCluster = new MarkerClusterer(map, marker,{
-				imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-			});
+
+			// 标记聚类
+			// markerCluster = new MarkerClusterer(map, marker,{
+			// 	imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+			// });
 		}
 
 		// 依次添加所有marker
@@ -135,22 +142,22 @@
 	function showError(e) {
 		switch(e.code){
 			case e.PERMISSION_DENIED:
-				x.innerHTML = "用户拒绝对获取地理位置的请求"
+				prompt.innerHTML = "用户拒绝对获取地理位置的请求"
 				break
 			case e.POSITION_UNAVAILABLE:
-				x.innerHTML = "位置信息不可用"
+				prompt.innerHTML = "位置信息不可用"
 				break
 			case e.TIMEOUT:
-				x.innerHTML = "请求超时"
+				prompt.innerHTML = "请求超时"
 				break
 			case e.UNKOWN_ERROR:
-				x.innerHTML = "未知错误"
+				prompt.innerHTML = "未知错误"
 				break
 		}
 	}
 </script>
 <!-- 标记聚类 -->
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+<!-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"> -->
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQFOnPxnxdPO_vQK8YWrXvl4Np19N-w94&callback=getLocation" type="text/javascript"></script>
 </body>

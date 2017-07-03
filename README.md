@@ -23,3 +23,12 @@ the interface of the “Intelligent Dustbin” project
 1. 地图上marker的点击跳转到详情页面
 2. 根据传入的辣鸡桶百分比改变呈现
 3. 管理界面美化美化！！点击排序功能
+
+## 2017/06/30
+1. paging页面：传入percentage参数，控制垃圾桶示意图的显示，未容纳垃圾的层级显示为灰色；
+2. paging页面：右边详细数据部分以及percentage均使用ajax请求；
+
+## 2017/07/01
+1. add: 登录页面，用户名为“nao”，密码为“111111”；
+2. add: manage页面，管理垃圾桶处理的历史情况，目前只能浏览信息，无增删操作；
+3. change: 地图页面marker加入了高温预警“hot”；
