@@ -34,10 +34,12 @@
 
 // 提示用户操作结果
 function result(msg) {
-	var $result = $('<div class="result"></div>')		
+	var $result = $('<div class="result"></div>')	
+	var $body = $(document.body)	
 	$result.text(msg)
-	$(document.body).append($result)
-	$result.animate({height: "120px"}, 500)
+	$body.html('')
+	$body.append($result)
+	$result.animate({height: "50px"}, 500)
 	var timer = setTimeout(function () {
 		$result.animate({height: "0px"}, 500)
 		var timer2 = setTimeout(function () {
@@ -50,25 +52,41 @@ function result(msg) {
 
 // 获取数据
 function getData() {
+	// 获取地图页面传过来的垃圾箱ID号
+	var msg = window.location.search
+	var ID = 0		//ID号初始化为0
+	if(msg != ''){
+		ID = msg.split("?")[1].split('=')[1]
+	}
+
+	// 发送该垃圾箱ID号，获取对应详情
 	$.ajax({
 		type:"POST",
 		url:"",
 		dataType:"text",
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
+		data:{
+			id:ID
+		},
 		error:function () {
-			status("获取数据失败(╥╯^╰╥)")
+			result("获取数据失败(╥╯^╰╥)")
 		},
 		success:function (data) {
-			$('#dustbinID').html(data.dustbinID)
-			$('#site').html(data.site)
-			$('#height').html(data.height)
-			$('#pressure').html(data.pressure)
-			$('#temperature').html(data.temperature)
-			$('#cleanTime').html(data.cleanTime)
-			$('#needClean').html(data.needClean)
+			if ($.isEmptyObject(data)) {
+				result("当前没有清理记录")
+			} else {
+				$('#dustbinID').html(data.dustbinID)
+				$('#site').html(data.site)
+				$('#height').html(data.height)
+				$('#pressure').html(data.pressure)
+				$('#temperature').html(data.temperature)
+				$('#cleanTime').html(data.cleanTime)
+				$('#needClean').html(data.needClean)
+				$('#tempWarning').html(data.tempWarning)
 
-			// 根据获取的百分比绘制垃圾桶
-			showDustbin(data.percentage)
+				// 根据获取的百分比绘制垃圾桶
+				showDustbin(data.percentage)
+			}
 		}
 	})
 }
@@ -222,11 +240,12 @@ function showDustbin(percentage) {
 }
 
 $(function () {
+
 	// 获取数据
-	// getData()
+	getData()
 
 	// 根据获取的百分比绘制垃圾桶
-	showDustbin()
+	// showDustbin()
 })
 </script>
 </body>

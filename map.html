@@ -11,6 +11,7 @@
 	<div id="prompt"></div>
 	<!-- <button onclick="getLocation()">获取地理位置</button> -->
 	<div id="mapholder"></div>
+	<div class="changeView" id="toManage">列表视图</div>
 	<div id="legend"><h3>legend</h3></div>
 
 <script type="text/javascript">
@@ -33,12 +34,15 @@
 
 		// 新建地图
 		var map = new google.maps.Map(mapholder,{
-			zoom: 15,
+			zoom: 16,
 			center: uluru,
 			mapTypeId: 'roadmap',
 			streetViewControl: false,
 			fullscreenControl: false
 		})
+
+		// 定义marker上的标签
+		var labels = '0123456789'
 
 		// 定义marker图标
 		var icons = {
@@ -101,23 +105,25 @@
 		}]
 
 		// 添加marker函数
-		// var markerCluster
-		function addMarker(feature) {
+		function addMarker(feature, i) {
 			var marker = new google.maps.Marker({
 				position: feature.position,
 				icon: icons[feature.type].icon,
+				id: i,
 				map: map
 			})
 
-			// 标记聚类
-			// markerCluster = new MarkerClusterer(map, marker,{
-			// 	imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-			// });
+
+			// 添加点击跳转到详情事件
+			marker.addListener('click', function () {
+				var theID = marker.id
+				window.location.href = 'paging.html?ID=' + theID;
+			});
 		}
 
 		// 依次添加所有marker
 		for( var i = 0, feature; feature = features[i]; i++ ){
-			addMarker(feature)
+			addMarker(feature, i)
 		}
 
 		// 添加图例说明
@@ -135,7 +141,15 @@
 		// 	imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 		// });
 
+		// 添加跳转到列表视图的按钮
+		var changeView = document.getElementById('toManage')
+
 		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend)
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(toManage)
+
+		changeView.addEventListener('click', function () {
+			window.open('manager.html')
+		})
 	}
 
 	// 错误处理函数
