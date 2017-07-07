@@ -16,11 +16,10 @@
 		<!-- 详细数据 -->
 		<section id="data">
 			<ul class="clearfix">
-				<li><span class="type">垃圾桶编号</span><span class="detial" id="dustbinID">02</span></li>
+				<li><span class="type">垃圾桶编号</span><span class="detial" id="crashID">02</span></li>
 				<li><span class="type">所在位置</span><span class="detial" id="site">爱晚亭</span></li>
-				<li><span class="type">垃圾高度</span><span class="detial" id="height">100%</span></li>
-				<li><span class="type">压力值</span><span class="detial" id="pressure">50N</span></li>
-				<li><span class="type">温度</span><span class="detial" id="temperature">27℃</span></li>
+				<li><span class="type">内部容量</span><span class="detial" id="capacity">100%</span></li>
+				<li><span class="type">温度</span><span class="detial" id="temValue">27℃</span></li>
 				<li><span class="type">清理时间</span><span class="detial" id="cleanTime">2017/06/29 15:37</span></li>
 			</ul>
 			<span class="label" id="needClean">需要清理</span>
@@ -242,10 +241,10 @@ function showDustbin(percentage) {
 $(function () {
 
 	// 获取数据
-	getData()
+	// getData()
 
 	// 根据获取的百分比绘制垃圾桶
-	// showDustbin()
+	showDustbin()
 })
 </script>
 </body>

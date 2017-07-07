@@ -33,11 +33,15 @@ the interface of the “Intelligent Dustbin” project
 2. add: manage页面，管理垃圾桶处理的历史情况，目前只能浏览信息，无增删操作；
 3. change: 地图页面marker加入了高温预警“hot”；
 
-## 2017/07/06/3
+## 2017/07/03
 1. change： 登录后直接进入地图页面；
 2. add: 地图页面加入跳转到管理页面的按钮；
 3. add: 管理页面加入跳转到地图页面的按钮; 
 4. add: 每个辣鸡桶详情页面移动端响应；
 5. add: 单击地图上的marker，跳转到该垃圾箱的详情页面并传送对应垃圾箱ID号到详情页面，以完成对应数据获取；
-6. TODO: 移动端媒体查询无效；
+6. TODO: 管理页面移动端媒体查询无效；
 
+## 2017/07/07
+1. add: 地图页面鼠标滑过marker显示信息，移走鼠标关闭信息窗口;
+2. TODO: 地图两点间路线导航，错误如下：
+![error](http://img.blog.csdn.net/20170707170310698?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVml2aWFuX2pheQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)

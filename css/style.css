@@ -142,6 +142,12 @@ label {
 .changeView:hover {
 	font-size: 1.5em;
 }
+#route {
+	width: 500px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
 
 /* ======================================== paging子页 ==================================== */
 main {
