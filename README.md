@@ -43,5 +43,10 @@ the interface of the “Intelligent Dustbin” project
 
 ## 2017/07/07
 1. add: 地图页面鼠标滑过marker显示信息，移走鼠标关闭信息窗口;
-2. TODO: 地图两点间路线导航，错误如下：
+2. TODO: 地图两点间路线导航，猜测配置有问题，发生错误如下：
 ![error](http://img.blog.csdn.net/20170707170310698?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVml2aWFuX2pheQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
+## 2017/07/24
+1. 两点间路线导航成功，最后发现问题是单词拼写错误orz。功能包括地图上以折线形式展示以及文字形式导航；
+2. TODO：含至少含一个途经点的路径规划算法。
