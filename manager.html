@@ -101,7 +101,7 @@
 		// 获取列表
 		$.ajax({
 			type:"POST",
-			url:"#",
+			url:"manager_data.php",
 			dataType:"json",
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			beforeSend:function () {
@@ -118,7 +118,7 @@
 				} else {
 					var lis = "";
 					$.each( data, function (index, item) {
-						lis += "<tr><td>" + item.dustbinID + "</td><td>" + item.need_clean_time + "</td><td>" + item.deal_time + "</td><td>" + item.weight + "</td><td>" + item.truckID + "</td><td>" + item.remarks + "</td></tr>"
+						lis += "<tr><td>" + item.crashID + "</td><td>" + item.receiveTime + "</td><td>" + item.cleanTime + "</td><td>" + item.capacity + "</td><td>" + item.truckID + "</td></tr>"
 					});
 					$loading.html("")
 					$tbody.html(lis)
@@ -140,7 +140,7 @@
 		})
 
 		// 加载列表
-		// getData()
+		getData()
 
 		//删除条目
 		// $(".edit").each( function (index) {

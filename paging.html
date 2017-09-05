@@ -16,11 +16,11 @@
 		<!-- 详细数据 -->
 		<section id="data">
 			<ul class="clearfix">
-				<li><span class="type">垃圾桶编号</span><span class="detial" id="crashID">02</span></li>
-				<li><span class="type">所在位置</span><span class="detial" id="site">爱晚亭</span></li>
-				<li><span class="type">内部容量</span><span class="detial" id="capacity">100%</span></li>
-				<li><span class="type">温度</span><span class="detial" id="temValue">27℃</span></li>
-				<li><span class="type">清理时间</span><span class="detial" id="cleanTime">2017/06/29 15:37</span></li>
+				<li><span class="type">垃圾桶编号</span><span class="detial" id="crashID"></span></li>
+				<li><span class="type">所在位置</span><span class="detial" id="site"></span></li>
+				<li><span class="type">内部容量</span><span class="detial" id="capacity"></span></li>
+				<li><span class="type">温度</span><span class="detial" id="temValue"></span></li>
+				<li><span class="type">清理时间</span><span class="detial" id="cleanTime"></span></li>
 			</ul>
 			<span class="label" id="needClean">需要清理</span>
 			<span class="label" id="tempWarning">温度正常</span>
@@ -53,38 +53,41 @@ function result(msg) {
 function getData() {
 	// 获取地图页面传过来的垃圾箱ID号
 	var msg = window.location.search
-	var ID = 0		//ID号初始化为0
+	var id = 0		//ID号初始化为0
 	if(msg != ''){
-		ID = msg.split("?")[1].split('=')[1]
+		id = msg.split("?")[1].split('=')[1]
 	}
 
 	// 发送该垃圾箱ID号，获取对应详情
 	$.ajax({
 		type:"POST",
-		url:"",
-		dataType:"text",
+		url:"paging_data.php",
+		dataType:"json",
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		data:{
-			id:ID
+			ID:id
 		},
-		error:function () {
+		error:function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log(XMLHttpRequest.status)
+			console.log(XMLHttpRequest.readyState)
+			console.log(textStatus)
+			console.log(errorThrown)
 			result("获取数据失败(╥╯^╰╥)")
 		},
 		success:function (data) {
 			if ($.isEmptyObject(data)) {
 				result("当前没有清理记录")
 			} else {
-				$('#dustbinID').html(data.dustbinID)
-				$('#site').html(data.site)
-				$('#height').html(data.height)
-				$('#pressure').html(data.pressure)
-				$('#temperature').html(data.temperature)
-				$('#cleanTime').html(data.cleanTime)
-				$('#needClean').html(data.needClean)
-				$('#tempWarning').html(data.tempWarning)
+				$('#crashID').html(data.crashID)		//垃圾桶编号
+				$('#site').html(data.site)				//位置
+				$('#capacity').html(data.capacity+'%')		//容量
+				$('#temValue').html(data.temValue)		//温度
+				$('#cleanTime').html(data.cleanTime)	//清理时间
+				$('#needClean').html((data.needClean == true) ? "需要清理" : "无需清理")	//是否需要清理
+				$('#tempWarning').html((data.tempWarning == true) ? "温度过高" : "温度正常")//是否温度过高
 
-				// 根据获取的百分比绘制垃圾桶
-				showDustbin(data.percentage)
+				// 根据获取的容量百分比绘制垃圾桶
+				showDustbin(data.capacity)
 			}
 		}
 	})
@@ -241,10 +244,10 @@ function showDustbin(percentage) {
 $(function () {
 
 	// 获取数据
-	// getData()
+	getData()
 
 	// 根据获取的百分比绘制垃圾桶
-	showDustbin()
+	// showDustbin()
 })
 </script>
 </body>

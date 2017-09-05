@@ -56,3 +56,6 @@ the interface of the “Intelligent Dustbin” project
 2. add: 地图页面实现ajax动态获取数据;
 3. TODO: 其余页面纯PHP获取，待修改;
 4. TODO: 固定时间间隔自动更新数据，待商榷。
+
+## 2017/09/05
+add: 所有页面使用ajax传输。
