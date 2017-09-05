@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>辣鸡全家桶</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<div id="prompt"></div>
@@ -19,7 +20,7 @@
 	var mapholder = document.getElementById('mapholder')
 	var prompt = document.getElementById('prompt')
 
-	// 获取当前位置
+	// 获取当前位置，成功即初始化
 	function getLocation() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(initMap, showError)
@@ -36,14 +37,11 @@
 		// 新建地图
 		var map = new google.maps.Map(mapholder,{
 			zoom: 16,					//缩放比例
-			center: uluru,				//地图视图中心
+			center: uluru,				//地图视图中心为当前位置
 			mapTypeId: 'roadmap',		//地图类型【地图/卫星图像】
 			streetViewControl: false,	//取消街景控件
 			fullscreenControl: false    //取消全屏控件
 		})
-
-		// 定义marker上的标签
-		var labels = '0123456789'
 
 		// 定义marker图标
 		var icons = {
@@ -69,48 +67,99 @@
 			}
 		}
 
+		// 获取ID、经纬度、状态
+		function getData() {
+			$.ajax({
+				type:"POST",
+				url:"map_data.php",
+				dataType:"json",
+				contentType:"application/x-www-form-urlencoded;cahrset=utf-8",
+				error:function (XMLHttpRequest, textStatus, errorThrown) {
+					// console.log(XMLHttpRequest)
+					// console.log("textStatus")
+					// console.log(errorThrown)
+					// alert("数据加载失败")
+					alert(XMLHttpRequest)
+				},
+				success:function (data) {
+					if ($.isEmptyObject(data)) {
+						alert("当前没有记录")
+					}else {
+						// 获取经纬度，放入对象数组features
+						alert('OK')
+						var features = []
+						var feature = {}
+						$.each(data, function (index, item) {
+							feature.id = item.crashID
+							feature.position = new google.maps.LanLng(item.latitude, item.longitude)
+							feature.type = item.type_0
+							features.push(feature)
+						})
+
+						// 依次添加所有marker
+						for( var i = 0, feature; feature = features[i]; i++ ){
+							addMarker(feature)
+						}
+					}
+				}
+
+			})
+		}
+		getData()
+
 		// 定义各标记点位置和类型
-		var features = [{
-			position:new google.maps.LatLng(28.176945578173324,112.94466957804863),
-			type:'station'
-		}, {
-			position: new google.maps.LatLng(28.18213283600413,112.94264182803337),
-			type: 'normal'
-		}, {
-			position: new google.maps.LatLng(28.17843076567516,112.94081237997058),
-			type: 'normal'
-		}, {
-			position: new google.maps.LatLng(28.182506770586404, 112.9389777490044),
-			type: 'normal'
-		}, {
-			position: new google.maps.LatLng(28.179210601368094, 112.94449791667168),
-			type: 'normal'
-		}, {
-			position: new google.maps.LatLng(28.18117333828266,112.9418959924126),
-			type: 'hot'
-		}, {
-			position: new google.maps.LatLng(28.180691028882528, 112.93882754529956),
-			type: 'full'
-		}, {
-			position: new google.maps.LatLng(28.17967400312619, 112.94208392855828),
-			type: 'full'
-		}, {
-				position: new google.maps.LatLng(28.179050214946194,112.9394820042992),
-			type: 'full'
-		}, {
-			position: new google.maps.LatLng(28.181447591674516, 112.94039395536426),
-			type: "timeout"
-		}, {
-			position: new google.maps.LatLng(28.17789604259819, 112.94153675791924),
-			type: "timeout"
-		}]
+		// var features = [{
+		// 	position:new google.maps.LatLng(28.176945578173324,112.94466957804863),
+		// 	type:'station',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.18213283600413,112.94264182803337),
+		// 	type: 'normal',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.17843076567516,112.94081237997058),
+		// 	type: 'normal',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.182506770586404, 112.9389777490044),
+		// 	type: 'normal',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.179210601368094, 112.94449791667168),
+		// 	type: 'normal',
+		// 	id:2
+		// }, {
+		// 	position: new google.maps.LatLng(28.18117333828266,112.9418959924126),
+		// 	type: 'hot',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.180691028882528, 112.93882754529956),
+		// 	type: 'full',
+		// 	id:4
+		// }, {
+		// 	position: new google.maps.LatLng(28.17967400312619, 112.94208392855828),
+		// 	type: 'full',
+		// 	id:6
+		// }, {
+		// 		position: new google.maps.LatLng(28.179050214946194,112.9394820042992),
+		// 	type: 'full',
+		// 	id:1
+		// }, {
+		// 	position: new google.maps.LatLng(28.181447591674516, 112.94039395536426),
+		// 	type: "timeout",
+		// 	id:3
+		// }, {
+		// 	position: new google.maps.LatLng(28.17789604259819, 112.94153675791924),
+		// 	type: "timeout",
+		// 	id:5
+		// }]
 
 		// 添加marker函数
-		function addMarker(feature, i) {
+		function addMarker(feature) {
 			var marker = new google.maps.Marker({
 				position: feature.position,			//位置
 				icon: icons[feature.type].icon,		//自定义图标
-				id: i,								//自定义属性ID
+				id: feature.id,								//自定义属性ID
 				map: map 							//使用的地图
 			})
 
@@ -136,9 +185,9 @@
 		}
 
 		// 依次添加所有marker
-		for( var i = 0, feature; feature = features[i]; i++ ){
-			addMarker(feature, i)
-		}
+		// for( var i = 0, feature; feature = features[i]; i++ ){
+		// 	addMarker(feature)
+		// }
 
 		// 添加图例说明
 		var legend = document.getElementById('legend')
@@ -151,42 +200,40 @@
 			legend.appendChild(div)
 		}
 
-		// 添加跳转到列表视图的按钮
+		// 点击跳转视图事件
 		var changeView = document.getElementById('toManage')
 		var route = document.getElementById('route')
+		changeView.addEventListener('click', function () {
+			window.open('manager.html')
+		})
 
 		// 添加自定义控件[图例、视图切换、路径规划]
 		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend)
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(toManage)
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(route)
 
-		// 点击跳转视图事件
-		changeView.addEventListener('click', function () {
-			window.open('manager.html')
-		})
-
 		// // 两点间路径规划
-		var directionsDisplay = new google.maps.DirectionsRenderer()		//地图路线显示对象
-		var directionsService = new google.maps.DirectionsService()		//地图路线服务对象
-		// var directionsVisible = false		//是否显示路线
-		directionsDisplay.setMap(map)
-		directionsDisplay.setPanel(route)  	//路线导航结果显示在这里
+		// var directionsDisplay = new google.maps.DirectionsRenderer()		//地图路线显示对象
+		// var directionsService = new google.maps.DirectionsService()		//地图路线服务对象
+		// // var directionsVisible = false		//是否显示路线
+		// directionsDisplay.setMap(map)
+		// directionsDisplay.setPanel(route)  	//路线导航结果显示在这里
 
-		// 配置参数
-		var directionsRequest = {
-			origin: new google.maps.LatLng(28.179210601368094, 112.94449791667168),
-			destination: new google.maps.LatLng(28.17967400312619, 112.94208392855828),
-			travelMode: 'DRIVING'
-		}
-		// 向路线服务发起请求
-		directionsService.route(directionsRequest,function (result, status) {
-				// if (status == google.maps.DirectionsStatus.OK) {
-				if (status == 'OK') {
-					directionsDisplay.setDirections(result)
-				}
-			}
-		)
-		directionsVisible = true
+		// // 配置参数
+		// var directionsRequest = {
+		// 	origin: new google.maps.LatLng(28.179210601368094, 112.94449791667168),
+		// 	destination: new google.maps.LatLng(28.17967400312619, 112.94208392855828),
+		// 	travelMode: 'DRIVING'
+		// }
+		// // 向路线服务发起请求
+		// directionsService.route(directionsRequest,function (result, status) {
+		// 		// if (status == google.maps.DirectionsStatus.OK) {
+		// 		if (status == 'OK') {
+		// 			directionsDisplay.setDirections(result)
+		// 		}
+		// 	}
+		// )
+		// directionsVisible = true
 	}
 
 	// 错误处理函数
