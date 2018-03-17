@@ -1,6 +1,6 @@
 import Main from '@/views/Main.vue';
 
-// 不作为Main组件的子页面展示的页面单独写，如下
+// 不作为Main组件的子页面展示的页面单独写
 export const loginRouter = {
     path: '/login',
     name: 'login',
@@ -36,12 +36,6 @@ export const page500 = {
     name: 'error-500',
     component: () => import('@/views/error-page/500.vue')
 };
-
-// export const preview = {
-//     path: '/preview',
-//     name: 'preview',
-//     component: () => import('@/views/form/department/preview.vue')
-// };
 
 export const locking = {
     path: '/locking',
@@ -106,8 +100,7 @@ export const appRouter = [
         title: '人员管理',
         component: Main,
         children: [
-            { path: 'department', title: '按部门', name: 'department', access: 0, icon: 'clipboard', component: () => import('@/views/staff-management/department/department.vue') },
-            { path: 'other', title: '其他', name: 'other', access: 0, icon: 'compose', component: () => import('@/views/staff-management/other/other.vue') }
+            { path: 'index', title: '人员管理', name: 'staff-management-index', access: 0, component: () => import('@/views/staff-management/staff-management.vue') }
 
         ]
     }
