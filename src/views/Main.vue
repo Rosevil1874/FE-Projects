@@ -30,9 +30,13 @@
                     </div>
                 </div>
                 <div class="header-avator-con">
+                    <!-- 全屏 -->
                     <full-screen v-model="isFullScreen" @on-change="fullscreenChange"></full-screen>
+
+                    <!-- 锁屏 -->
                     <lock-screen></lock-screen>
-                    
+
+                    <!-- 用户个人中心、退出登录 -->
                     <div class="user-dropdown-menu-con">
                         <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
                             <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
@@ -45,11 +49,14 @@
                                     <DropdownItem name="loginout" divided>退出登录</DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+                            <!-- 头像 -->
                             <Avatar :src="avatorPath" style="background: #619fe7;margin-left: 10px;"></Avatar>
                         </Row>
                     </div>
                 </div>
             </div>
+
+            <!-- 标签选项 -->
             <div class="tags-con">
                 <tags-page-opened :pageTagsList="pageTagsList"></tags-page-opened>
             </div>

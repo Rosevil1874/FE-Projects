@@ -1,6 +1,6 @@
 
 <style lang="less">
-    @import './login_register.less';
+    @import './login.less';
 </style>
 
 <template>
@@ -109,6 +109,14 @@
 	import Cookies from 'js-cookie';
     export default{
         data(){
+            const validePhone = (rule, value, callback) => {
+                var re = /^1[0-9]{10}$/;
+                if (!re.test(value)) {
+                    callback(new Error('请输入正确格式的手机号'));
+                } else {
+                    callback();
+                }
+            };
             return {
             	// modal显示与否
             	modalLogin: false,
@@ -147,8 +155,10 @@
             			{required: true, message: '请输入密码', trigger: 'blur'},
             			{type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur'}
             		],
+                    phoneNumber: [
+                        { validator: validePhone }
+                    ],
             		email: [
-            			{required: true, message: '请填写邮箱', trigger: 'blur'},
             			{type: 'email', message: '邮箱格式不规范', trigger: 'blur'}
             		]
             	}
@@ -182,14 +192,22 @@
         			        }
         			    ).then(res => {
         			        console.log(res.data)
-        			        if (res.data === -1) {
+        			        if (res.data === -2) {
         			            this.$Message.error('该用户不存在');
-        			        } else if (res.data === 0) {
+        			        } else if (res.data === -1) {
         			            this.$Message.error('密码输入错误');
         			        } else {
         			        	Cookies.set('user', username)
         			        	Cookies.set('password', password)
-        			        	this.$store.commit('setAvator', 'http://img3.duitang.com/uploads/item/201503/30/20150330162203_xTdjR.jpeg');
+                                
+                                // 管理员权限
+                                if (res.data === 0) {
+                                    Cookies.set('access', 0)           // 管理员
+                                } else {
+                                    Cookies.set('access', 1)           // 非管理员
+                                }
+
+        			        	this.$store.commit('setAvator', 'http://img1.imgtn.bdimg.com/it/u=2786575315,1949106214&fm=27&gp=0.jpg');
     			                this.$router.push({
     			                	name: 'home_index'
     			                })
@@ -227,14 +245,6 @@
 	                        if (res.data === 1) {
 	                            this.userId++
 	                            this.modalRegister = false
-
-	                            // 管理员权限
-        			        	if (this.registerItem.isManager === '是') {
-        			        		Cookies.set('access', 0)
-        			        	} else {
-        			        		Cookies.set('access', 1)
-        			        	}
-
 	                            this.$Message.success('注册成功，请登录')
 	                        } else{
 	                            this.$Message.error('注册失败，服务器端出错')

@@ -7,7 +7,7 @@
     <div class="access">
         <Row>
             <Col span="8">
-                <Card>
+                <Card class="access">
                     <p slot="title">
                         <Icon type="android-contact"></Icon>
                         当前用户
