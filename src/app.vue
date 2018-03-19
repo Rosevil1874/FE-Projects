@@ -12,13 +12,10 @@
             };
         },
         mounted () {
-
         },
         beforeDestroy () {
-
         },
         methods: {
-
         }
     };
 </script>

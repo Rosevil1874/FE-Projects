@@ -64,15 +64,15 @@ export const appRouter = [
         title: '监控点管理',
         component: Main,
         children: [
-            { path: 'watchPoint', title: '监控点列表', name: 'watch-point', icon: 'eye', component: () => import('@/views/node-management/watch-point.vue') },
+            { path: 'monitorList', title: '监控点列表', name: 'monitor-list', icon: 'eye', component: () => import('@/views/node-management/monitor.vue') },
             { path: 'nodeList', title: '节点列表', name: 'node-list', icon: 'network', component: () => import('@/views/node-management/node-list.vue') },
             { path: 'maintainHistory', title: '维护记录 ', name: 'maintain-history', icon: 'settings', component: () => import('@/views/node-management/maintain-history.vue') }
         ]
     },
     {
-        path: '/component',
+        path: '/statistic',
         icon: 'stats-bars',
-        name: 'component',
+        name: 'statistic',
         title: '统计分析',
         component: Main,
         children: [
@@ -81,14 +81,14 @@ export const appRouter = [
                 icon: 'waterdrop',
                 name: 'water-level',
                 title: '水位历史',
-                component: () => import('@/views/my-components/water-level/water-level.vue')
+                component: () => import('@/views/statistic/water-level.vue')
             },
             {
                 path: 'sewer',
                 icon: 'ios-circle-filled',
                 name: 'sewer',
                 title: '井盖历史',
-                component: () => import('@/views/my-components/sewer/sewer.vue')
+                component: () => import('@/views/statistic/sewer.vue')
             }
         ]
     },
