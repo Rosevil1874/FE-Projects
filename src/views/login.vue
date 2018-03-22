@@ -180,7 +180,7 @@
             			let password = this.loginItem.password
             			/*接口的传值是(-1,该用户不存在),(0,密码错误)*/
             			let data = {'username':username, 'password': password}
-            			this.$ajax.post('http://localhost/sewerPHP/login.php', 
+            			this.$ajax.post('http://localhost/sewer-system/sewerPHP/login.php', 
         			        {
         			            data:data
         			        },
@@ -230,7 +230,7 @@
 	                        'department':this.registerItem.department,
 	                        'isManager': this.registerItem.isManager
 	                    }
-	                    this.$ajax.post('http://localhost/sewerPHP/register.php', 
+	                    this.$ajax.post('http://localhost/sewer-system/sewerPHP/register.php', 
 	                            {
 	                                data:data
 	                            },

@@ -4,6 +4,13 @@
 </style>
 <template>
     <div class="home-main">
+        <!-- 地图 -->
+        <Row>
+            <Card class="home-card">
+                <b-map-component></b-map-component>
+            </Card>
+        </Row>
+        <!-- 统计监控点状态 -->
         <Row :gutter="5">
             <Col span='8' :style="{marginBottom: '10px'}">
                 <infor-card
@@ -34,29 +41,21 @@
                 ></infor-card>
             </Col>
         </Row>
-        <Row>
-            <Card :padding="0">
-                <div class="map-con">
-                    <Col span="24" class="map-incon">
-                        <Row type="flex" justify="center" align="middle">
-                            map
-                        </Row>
-                    </Col>
-                </div>
-            </Card>
-        </Row>
+        
     </div>
 </template>
 
 <script>
 import countUp from './components/countUp.vue';
 import inforCard from './components/inforCard.vue';
+import BMapComponent from './components/BMapComponent.vue';
 
 export default {
     name: 'home',
     components: {
         inforCard,
-        countUp
+        countUp,
+        BMapComponent
     },
     data () {
         return {
@@ -74,6 +73,11 @@ export default {
     },
     methods: {
       
+    },
+    ready: function() {
+        var map = new BMap.Map("container"); 
+        var point = new BMap.Point(116.404, 39.915); 
+        map.centerAndZoom(point, 15); 
     }
 };
 </script>

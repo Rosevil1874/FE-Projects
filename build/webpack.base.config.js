@@ -85,5 +85,9 @@ module.exports = {
             'vue': 'vue/dist/vue.esm.js',
             '@': resolve('../src'),
         }
-    }
+    },
+    // 百度地图
+    externals: {
+      "BMap": "BMap"
+    },
 };

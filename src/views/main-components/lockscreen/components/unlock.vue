@@ -56,7 +56,7 @@ export default {
                 'username': Cookies.get('user'),
                 'password': this.password
             }
-            this.$ajax.post('http://localhost/sewerPHP/unlock.php', 
+            this.$ajax.post('http://localhost/sewer-system/sewerPHP/unlock.php', 
                 {
                     data:data
                 },
