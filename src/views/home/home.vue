@@ -25,7 +25,7 @@
             <Col span='8' :style="{marginBottom: '10px'}">
                 <infor-card
                     id-name="collection_count"
-                    :end-val="count.earlyWarning"
+                    :end-val="count.warning"
                     iconType="alert-circled"
                     color="#ffd572"
                     intro-text="预警"
@@ -34,7 +34,7 @@
             <Col span='8' :style="{marginBottom: '10px'}">
                 <infor-card
                     id-name="transfer_count"
-                    :end-val="count.warning"
+                    :end-val="count.danger"
                     iconType="sad"
                     color="#f25e43"
                     intro-text="告警"
@@ -60,9 +60,9 @@ export default {
     data () {
         return {
             count: {
-                normal: 496,
-                earlyWarning: 32,
-                warning: 24
+                normal: 0,
+                warning: 0,
+                danger: 0
             }
         };
     },
@@ -72,12 +72,23 @@ export default {
         }
     },
     methods: {
-      
+        getCount (){
+            this.$ajax.get('http://localhost/sewer-system/sewerPHP/home/get-count.php')
+                .then( res => {
+                    this.count.normal = res.data.normal
+                    this.count.warning = res.data.warning
+                    this.count.danger = res.data.danger
+                })
+
+        }
     },
     ready: function() {
         var map = new BMap.Map("container"); 
         var point = new BMap.Point(116.404, 39.915); 
         map.centerAndZoom(point, 15); 
+    },
+    mounted () {
+        this.getCount()
     }
 };
 </script>

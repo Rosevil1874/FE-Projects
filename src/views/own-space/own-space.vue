@@ -178,7 +178,7 @@ export default {
                         'email': this.userForm.email,
                         'department': this.userForm.department
                     }
-                    this.$ajax.post('http://localhost/sewer-system/sewerPHP/save-own-message.php',
+                    this.$ajax.post('http://localhost/sewer-system/sewerPHP/own-space/save-own-message.php',
                         {
                             data: data
                         },
@@ -212,7 +212,7 @@ export default {
                         'username': Cookies.get('user'),
                         'password': this.editPasswordForm.newPass
                     }
-                    this.$ajax.post('http://localhost/sewer-system/sewerPHP/save-password.php',
+                    this.$ajax.post('http://localhost/sewer-system/sewerPHP/own-space/save-password.php',
                         {
                             data: data
                         },
@@ -235,7 +235,7 @@ export default {
         // 初始化，获取用户信息
         init () {
             let data = {'username': Cookies.get('user')}
-            this.$ajax.post('http://localhost/sewer-system/sewerPHP/own-space.php',
+            this.$ajax.post('http://localhost/sewer-system/sewerPHP/own-space/own-space.php',
                 {
                     data: data
                 },
