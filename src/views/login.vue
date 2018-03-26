@@ -72,12 +72,12 @@
     		                <Icon type="ios-locked" slot="prepend"></Icon>
     		            </Input>
     		        </FormItem>
-    		        <FormItem prop="newPassword">
+    		        <FormItem prop="phoneNumber">
     		            <Input type="tel" v-model="registerItem.phoneNumber" placeholder="联系电话">
     		                <Icon type="ios-telephone" slot="prepend"></Icon>
     		            </Input>
     		        </FormItem>
-    		        <FormItem prop="newPassword">
+    		        <FormItem prop="email">
     		            <Input type="email" v-model="registerItem.email" placeholder="邮箱">
     		                <Icon type="ios-email" slot="prepend"></Icon>
     		            </Input>
@@ -217,7 +217,7 @@
             	})
             },
             toRegister: function(name){
-               this.$refs[name].validate((valid) => {
+                this.$refs[name].validate((valid) => {
             		if (!valid) {
             			this.$Message.error('登录失败，请正确填写登录信息');
             		} else {
@@ -250,7 +250,7 @@
 	                            this.$Message.error('注册失败，服务器端出错')
 	                        } 
 	                    })
-            		}
+            	}
         	})
         }
     }
