@@ -26,7 +26,7 @@
                 <infor-card
                     id-name="collection_count"
                     :end-val="count.warning"
-                    iconType="alert-circled"
+                    iconType="sad"
                     color="#ffd572"
                     intro-text="预警"
                 ></infor-card>
@@ -35,7 +35,7 @@
                 <infor-card
                     id-name="transfer_count"
                     :end-val="count.danger"
-                    iconType="sad"
+                    iconType="alert-circled"
                     color="#f25e43"
                     intro-text="告警"
                 ></infor-card>
