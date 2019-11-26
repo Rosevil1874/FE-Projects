@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>桶桶</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<main>
+		<!-- 图示垃圾箱当前容纳垃圾百分比 -->
+		<section id="status"></section>
+		
+		<!-- 详细数据 -->
+		<section id="data">
+			<ul class="clearfix">
+				<li><span class="type">垃圾桶编号</span><span class="detial" id="crashID"></span></li>
+				<li><span class="type">所在位置</span><span class="detial" id="site"></span></li>
+				<li><span class="type">内部容量</span><span class="detial" id="capacity"></span></li>
+				<li><span class="type">温度</span><span class="detial" id="temValue"></span></li>
+				<li><span class="type">清理时间</span><span class="detial" id="cleanTime"></span></li>
+			</ul>
+			<span class="label" id="needClean">需要清理</span>
+			<span class="label" id="tempWarning">温度正常</span>
+		</section>
+	</main>
+<!-- ECharts单文件引入 -->
+<script type="text/javascript" src="js/echarts.js"></script>
+<!-- 为模块加载器配置echarts和所需图表的路径 -->
+<script type="text/javascript">
+
+// 提示用户操作结果
+function result(msg) {
+	var $result = $('<div class="result"></div>')	
+	var $body = $(document.body)	
+	$result.text(msg)
+	$body.html('')
+	$body.append($result)
+	$result.animate({height: "50px"}, 500)
+	var timer = setTimeout(function () {
+		$result.animate({height: "0px"}, 500)
+		var timer2 = setTimeout(function () {
+			$result.remove()
+			clearTimeout(timer2)
+		}, 500);
+		clearTimeout(timer)
+	}, 1500);
+}
+
+// 获取数据
+function getData() {
+	// 获取地图页面传过来的垃圾箱ID号
+	var msg = window.location.search
+	var id = 0		//ID号初始化为0
+	if(msg != ''){
+		id = msg.split("?")[1].split('=')[1]
+	}
+
+	// 发送该垃圾箱ID号，获取对应详情
+	$.ajax({
+		type:"POST",
+		url:"paging_data.php",
+		dataType:"json",
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
+		data:{
+			ID:id
+		},
+		error:function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log(XMLHttpRequest.status)
+			console.log(XMLHttpRequest.readyState)
+			console.log(textStatus)
+			console.log(errorThrown)
+			result("获取数据失败(╥╯^╰╥)")
+		},
+		success:function (data) {
+			if ($.isEmptyObject(data)) {
+				result("当前没有清理记录")
+			} else {
+				$('#crashID').html(data.crashID)		//垃圾桶编号
+				$('#site').html(data.site)				//位置
+				$('#capacity').html(data.capacity+'%')		//容量
+				$('#temValue').html(data.temValue)		//温度
+				$('#cleanTime').html(data.cleanTime)	//清理时间
+				$('#needClean').html((data.needClean == true) ? "需要清理" : "无需清理")	//是否需要清理
+				$('#tempWarning').html((data.tempWarning == true) ? "温度过高" : "温度正常")//是否温度过高
+
+				// 根据获取的容量百分比绘制垃圾桶
+				showDustbin(data.capacity)
+			}
+		}
+	})
+}
+
+// 根据获取的百分比绘制垃圾桶
+function showDustbin(percentage) {
+	require.config({
+		// 路径配置
+		paths:{
+			echarts:'http://echarts.baidu.com/build/dist'
+		}
+	})
+
+	// 使用
+	require(
+		[
+			'echarts',
+			'echarts/chart/funnel'
+		],
+		function (ec) {
+			// 基于准备好的DOM5，初始化echarts图表
+			var myChart = ec.init(document.getElementById('status'))
+
+			var option={
+				color:[
+					'rgba(255, 69, 0, 0.5)',
+					'rgba(255, 150, 0, 0.5)',
+					'rgba(255, 200, 0, 0.5)',
+					'rgba(155, 200, 50, 0.5)',
+					'rgba(55, 200, 100, 0.5)'
+				],
+				title:{
+					text:'垃圾桶容纳状态'
+				},
+				tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c}%"
+			    },
+				toolbox: {
+			        show : true,
+			        orient: 'vertical',
+	        		top: 'center',
+			        feature : {
+			            mark : {show: false},
+			            dataView : {show: true, readOnly: false},
+			            restore : {show: true},
+			            saveAsImage : {show: true}
+			        }
+			    },
+			    legend: {
+			    	orient: 'vertical',
+			    	x: 'left',
+		            y: 'bottom',
+		            data : ['全满急需处理','待处理','接近待处理','正常','空闲']
+		        },
+		        calculable : true,
+	            series : [
+	                {
+	                    name:'状态',
+	                    type:'funnel',
+	                    x: '10%',
+	                    // y:60,
+	                    // y2:60,
+	                    // width: '80%',
+	                    // min:0,
+	                    // max:100,
+	                    minSize:'40%',
+	                    maxSize:'100%',
+	                    sort:'descending',
+	                    gap:10,
+	                    itemStyle: {
+	                        normal: {
+	                            label: {
+	                            	shoW:true,
+	                            	position:'inside'
+	                                // formatter: '{b}状态'
+	                            },
+	                            labelLine: {
+	                                show : false,
+	                                length:10,
+	                                lineStyle:{
+	                                	width:1,
+	                                	type:'solid'
+	                                }
+	                            }
+	                        },
+	                        emphasis: {
+	                        	borderColor:'yellow',
+	                        	borderWidth:3,
+	                            label: {
+	                            	show:true,
+	                                // position:'inside',
+	                                formatter: '{b}状态 : {c}%',
+	                                textStyle:{
+	                                	fontSize:15
+	                                }
+	                            },
+	                            labelLine:{
+	                            	show:true
+	                            }
+	                        }
+	                    },
+	                    data:[
+	                        {value:100, name:'全满急需处理'},
+	                        {value:80, name:'待处理'},
+	                        {value:60, name:'接近待处理'},
+	                        {value:40, name:'正常'},
+	                        {value:20, name:'空闲'}
+	                    ]
+	                }
+	        	]
+			}
+			if (percentage <= 20) {
+				option.color = [
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(55, 200, 100, 0.5)'
+				]
+			} else if(percentage > 20 && percentage <= 40) {
+				option.color = [
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(155, 200, 50, 0.5)',
+					'rgba(55, 200, 100, 0.5)'
+				]
+			} else if(percentage > 40 && percentage <= 60) {
+				option.color = [
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(255, 200, 0, 0.5)',
+					'rgba(155, 200, 50, 0.5)',
+					'rgba(55, 200, 100, 0.5)'
+				]
+			} else if(percentage > 60 && percentage <= 80) {
+				option.color = [
+					'rgba(114, 114, 114, 0.3)',
+					'rgba(255, 150, 0, 0.5)',
+					'rgba(255, 200, 0, 0.5)',
+					'rgba(155, 200, 50, 0.5)',
+					'rgba(55, 200, 100, 0.5)'
+				]
+			} 
+
+			// 为echarts对象加载数据
+			myChart.setOption(option)
+		}
+	)
+}
+
+$(function () {
+
+	// 获取数据
+	getData()
+
+	// 根据获取的百分比绘制垃圾桶
+	// showDustbin()
+})
+</script>
+</body>
+</html>
