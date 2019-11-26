@@ -1,0 +1,54 @@
+/*布局*/
+.layout-con{
+    height: 100%;
+    width: 100%;
+}
+.menu-item span{
+    display: inline-block;
+    overflow: hidden;
+    width: 69px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: width .2s ease .2s;
+}
+.menu-item i{
+    transform: translateX(0px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+/*自定义 - 侧边栏左对齐*/
+div .ivu-menu-submenu-title{
+	text-align: left;
+}
+li .ivu-menu-item {
+	text-align: left;
+	margin-left: 5px;
+}
+#left-item{
+	margin-left: -100px;
+}
+#exit{
+	margin-left: -75px;
+}
+
+/*sider*/
+.logo img{
+	width: 70px;
+	height: 70px;
+	margin: 30px 0 20px 0;
+}
+.username {
+	color: #F6922B;
+	font-weight: bolder;
+}
+
+/*header*/
+.title img {
+	height: 50px;
+}
+button .quit {
+	/*float: right;*/
+}
