@@ -1,0 +1,46 @@
+<?
+var $json = array(
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	),
+	array("goodId"=>"20170322",
+		"portrait"=>"images/yin.jpg",
+		"title"=>"天下第一好老公银桑出售"
+	)
+);
+	
+echo json_encode($item);
+?>
