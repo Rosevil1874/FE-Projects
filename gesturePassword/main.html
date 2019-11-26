@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>password</title>
+	<meta http-equiv="cleartype" content="on">
+	<meta name="MobileOptimized" content="320">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<!-- 密码绘制区 -->
+	<canvas id="password">
+		你的浏览器不支持canvas画布，请升级浏览器版本！
+	</canvas>
+
+	<!-- 提示区 -->
+	<p class="hint"></p>
+	<form id="option">
+		<div class="wrap">
+			<input type="radio" name="Password" id="set">
+			<label for="set">设置密码</label>
+		</div>
+		<div class="wrap">
+			<input type="radio" name="Password" id="validate">
+			<label for="validate">验证密码</label>
+		</div>
+	</form>
+
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/action.js"></script>
+</body>
+</html>
